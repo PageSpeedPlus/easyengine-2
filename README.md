@@ -1,7 +1,5 @@
 # [EasyEngine](https://easyengine.io/)
 
-<img src="https://d3qt5vpr7p9rgn.cloudfront.net/wp-content/uploads/2013/08/easy-engine-logo-2-RS1-240x184.png" alt="EasyEngine Logo" align="right" />
-
 ## Quick Start
 
 ### Distro
@@ -83,15 +81,15 @@ ee site create example.com --php --hhvm          # create example.com php site w
 
 ### GitHub Repos
 
-https://github.com/EasyEngine
-https://github.com/EasyEngine/easyengine
-https://github.com/VirtuBox/ubuntu-nginx-web-server
-https://github.com/VirtuBox/nginx-ee
-https://github.com/VirtuBox/debian-ubuntu-mariadb-backup
-https://github.com/VirtuBox/easyengine-dashboard
-https://github.com/VirtuBox/netdata-dashboard
-https://github.com/VirtuBox/wp-optimize
-https://github.com/VirtuBox
+- https://github.com/EasyEngine
+- https://github.com/EasyEngine/easyengine
+- https://github.com/VirtuBox/ubuntu-nginx-web-server
+- https://github.com/VirtuBox/nginx-ee
+- https://github.com/VirtuBox/debian-ubuntu-mariadb-backup
+- https://github.com/VirtuBox/easyengine-dashboard
+- https://github.com/VirtuBox/netdata-dashboard
+- https://github.com/VirtuBox/wp-optimize
+- https://github.com/VirtuBox
 
 ### Community Guides
 - [Develop and Deploy with EasyEngine + VVV + Wordmove](https://github.com/joeguilmette/ee-vvv-wordmove)
