@@ -17,18 +17,6 @@
 |EE Admin    |22222           | ✓       |          |
 |GPG Key Server    |11371           |        |✓          |
 
-### Installation
-
-```bash
-wget -qO ee rt.cx/ee && sudo bash ee     # Install easyengine 3
-```
-
-### Update EasyEngine
-
-```bash
-ee update
-```
-
 ### Cheatsheet - Site creation
 
 ```bash
@@ -68,6 +56,48 @@ ee site create example.com --wp --hhvm           # create example.com WordPress 
 ee site create example.com --php --hhvm          # create example.com php site with HHVM support
 ```
 
+### Installation/Setup
+
+#### Voraussetzung
+
+* Non-root User
+* Hostname 
+
+##### Non-root User
+
+```bash
+adduser name
+usermod -a -G sudo isp
+```
+
+##### Hostname
+
+```bash
+nano /etc/hostname
+nano /etc/hosts
+reboot
+```
+
+###### /etc/hostname
+
+```bash
+export HOSTNAMESHORT=server1
+echo $HOSTNAMESHORT > /etc/hostname
+/etc/init.d/hostname.sh start
+```
+
+###### /etc/hosts
+
+#### Installation EasyEngine
+
+```bash
+wget -qO ee rt.cx/ee && sudo bash ee     # Install easyengine 3
+```
+
+#### Installation Monit
+
+- https://easyengine.io/tutorials/monitoring/monit/
+
 ## Useful Links
 
 - [Documentation](https://easyengine.io/docs/)
@@ -91,6 +121,16 @@ ee site create example.com --php --hhvm          # create example.com php site w
 - https://github.com/VirtuBox/netdata-dashboard
 - https://github.com/VirtuBox/wp-optimize
 - https://github.com/VirtuBox
+
+### EasyEngine Wiki
+
+**Installation**
+
+- [Install](https://easyengine.io/docs/install/)
+
+**Monitoring**
+
+- [Monit](https://easyengine.io/tutorials/monitoring/monit/)
 
 ### Community Guides
 - [Develop and Deploy with EasyEngine + VVV + Wordmove](https://github.com/joeguilmette/ee-vvv-wordmove)
