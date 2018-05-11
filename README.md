@@ -85,7 +85,7 @@ reboot
 ###### /etc/hostname
 
 ```bash
-export HOSTNAMESHORT=server1
+export HOSTNAMESHORT="server1"
 echo $HOSTNAMESHORT > /etc/hostname
 /etc/init.d/hostname.sh start
 ```
