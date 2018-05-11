@@ -31,7 +31,9 @@ ee update
 
 ### Cheatsheet - Site creation
 
+```bash
 sudo ee site create example.com --wp     # Install required packages & setup WordPress on example.com
+```
 
 |                    |  Single Site  | 	Multisite w/ Subdir  |	Multisite w/ Subdom     |
 |--------------------|---------------|-----------------------|--------------------------|
@@ -40,7 +42,6 @@ sudo ee site create example.com --wp     # Install required packages & setup Wor
 | **W3 Total Cache** |  --w3tc       |	--wpsubdir --w3tc    |  --wpsubdomain --w3tc    |
 | **Nginx cache**    |  --wpfc       |  --wpsubdir --wpfc    |  --wpsubdomain --wpfc    |
 | **Redis cache**    |  --wpredis    |  --wpsubdir --wpredis |  --wpsubdomain --wpredis |
-
 
 #### Standard WordPress Sites
 
