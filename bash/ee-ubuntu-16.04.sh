@@ -29,54 +29,9 @@ if [ "$(id -u)" != "0" ]; then
 fi
 clear
 #------------------------------------------------------------------------------------
-# 4. Ubuntu aktualisieren & aufräumen
+# 4. Ubuntu 16.04 - Grundkonfiguration
 #------------------------------------------------------------------------------------
-apt-get -qq update && apt-get -yqq upgrade && apt-get -yqq autoremove && apt-get -qq clean > /dev/null 2>&1
-#------------------------------------------------------------------------------------
-# 5. Benötigte Software installieren
-#------------------------------------------------------------------------------------
-apt-get -yqq install manpages-de curl wget ufw haveged git unzip zip fail2ban htop dnsutils zoo bzip2 arj nomarch lzop cabextract locate apt-listchanges apt-transport-https software-properties-common lsb-release ca-certificates ssh openssh-server ntp ntpdate debconf-utils binutils sudo e2fsprogs openssh-server openssl ssl-cert mcrypt nano rsync > /dev/null 2>&1
-#------------------------------------------------------------------------------------
-# Standart Shell von Dash auf Bash Shell umstellen
-#------------------------------------------------------------------------------------
-echo "dash dash/sh boolean false" | debconf-set-selections
-dpkg-reconfigure -f noninteractive dash > /dev/null 2>&1
-#------------------------------------------------------------------------------------
-# 6. Erlaubt SSH Logins via Passwort & Verbietet Root Login
-#------------------------------------------------------------------------------------
-sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-sed -i 's/PermitRootLogin yes/PermitRootLogin without-password/' /etc/ssh/sshd_config
-/etc/init.d/ssh restart
-#------------------------------------------------------------------------------------
-# 6. Syntax Highlighten im nano Editor
-#------------------------------------------------------------------------------------
-wget https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh -O- | sh
-#------------------------------------------------------------------------------------
-# 7. UFW Firewall konfigurieren & aktivieren
-#------------------------------------------------------------------------------------
-ufw logging on
-ufw default allow outgoing
-ufw default deny incoming
-ufw allow 22
-ufw allow http
-ufw allow https
-ufw allow 123
-ufw allow 161
-ufw allow 6556
-ufw allow 19999
-ufw allow 22222
-ufw enable
-#------------------------------------------------------------------------------------
-# Whitelist Cloudflare network IPv4+IPv6
-#------------------------------------------------------------------------------------
-wget https://raw.githubusercontent.com/Paul-Reed/cloudflare-ufw/master/cloudflare-ufw.sh
-bash cloudflare-ufw.sh
-#------------------------------------------------------------------------------------
-# 8. Tweak Kernel source & Increase open files limits source
-#------------------------------------------------------------------------------------
-wget -O /etc/sysctl.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/sysctl.conf > /dev/null 2>&1
-sysctl -p > /dev/null 2>&1
-wget -O /etc/security/limits.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/security/limits.conf > /dev/null 2>&1
+bash <(wget --no-check-certificate -O - https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/bash/ubuntu-16.04.sh)
 #------------------------------------------------------------------------------------
 # MariaDB 10.2 installieren
 #------------------------------------------------------------------------------------
