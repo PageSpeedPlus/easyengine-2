@@ -33,34 +33,23 @@ clear
 #------------------------------------------------------------------------------------
 bash <(wget --no-check-certificate -O - https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/bash/ubuntu-16.04.sh)
 #------------------------------------------------------------------------------------
-# MariaDB 10.2 installieren
+# 5. MariaDB 10.2 installieren
 #------------------------------------------------------------------------------------
-curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash -s -- --mariadb-server-version=10.2 --skip-maxscale
-apt-get -qq update > /dev/null 2>&1
-ROOT_SQL_PASS=$(/dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1; echo;)
-export DEBIAN_FRONTEND=noninteractive
-debconf-set-selections <<< 'mariadb-server mysql-server/root_password password $ROOT_SQL_PASS'
-debconf-set-selections <<< 'mariadb-server mysql-server/root_password_again password $ROOT_SQL_PASS'
-apt-get -yqq install mariadb-server > /dev/null 2>&1
-cat <<EOF >~/.my.cnf
- [client]
- user=root
- password=$ROOT_SQL_PASS
-EOF
+bash <(wget --no-check-certificate -O - https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/bash/mariadb.sh)
 #------------------------------------------------------------------------------------
-# EasyEngine installieren
+# 6. EasyEngine installieren
 #------------------------------------------------------------------------------------
 wget -qO ee rt.cx/ee && bash ee > /dev/null 2>&1
 source /etc/bash_completion.d/ee_auto.rc
-#------------------------------------------------------------------------------------
-# EasyEngine Stack installieren
-#------------------------------------------------------------------------------------
 ee stack install
 ee stack install --php7 --redis --admin --phpredisadmin
 #------------------------------------------------------------------------------------
-# NGiNX kompilieren
+# 7. NGiNX kompilieren
 #------------------------------------------------------------------------------------
 bash <(wget --no-check-certificate -O - https://raw.githubusercontent.com/VirtuBox/nginx-ee/master/nginx-build.sh)
+#------------------------------------------------------------------------------------
+# 8. NGiNX konfigurieren
+#------------------------------------------------------------------------------------
 wget -O /etc/nginx/nginx.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/nginx.conf
 wget -O /etc/nginx/conf.d/webp.conf  https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/conf.d/webp.conf
 wget -O /etc/nginx/conf.d/upstream.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/conf.d/upstream.conf
