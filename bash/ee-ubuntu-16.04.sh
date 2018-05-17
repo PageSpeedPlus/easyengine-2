@@ -44,6 +44,10 @@ source /etc/bash_completion.d/ee_auto.rc
 ee stack install
 ee stack install --php7 --redis --admin --phpredisadmin
 #------------------------------------------------------------------------------------
+# disable transparent hugepage for redis
+#------------------------------------------------------------------------------------
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+#------------------------------------------------------------------------------------
 # 7. NGiNX kompilieren
 #------------------------------------------------------------------------------------
 bash <(wget --no-check-certificate -O - https://raw.githubusercontent.com/VirtuBox/nginx-ee/master/nginx-build.sh)
@@ -67,9 +71,11 @@ systemctl restart nginx
 #------------------------------------------------------------------------------------
 usermod -s /bin/bash www-data
 #------------------------------------------------------------------------------------
-# disable transparent hugepage for redis
+# Install Composer - Fix phpmyadmin install issue
 #------------------------------------------------------------------------------------
-echo never > /sys/kernel/mm/transparent_hugepage/enabled
+bash <(wget --no-check-certificate -O - https://git.virtubox.net/virtubox/debian-config/raw/master/composer.sh)
+sudo -u www-data composer update -d /var/www/22222/htdocs/db/pma/
+sudo wp --allow-root cli update --nightly
 #------------------------------------------------------------------------------------
 # PHP 7.0
 #------------------------------------------------------------------------------------
@@ -112,9 +118,3 @@ wget -O /etc/fail2ban/filter.d/ee-wordpress.conf https://raw.githubusercontent.c
 wget -O /etc/fail2ban/jail.d/custom.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/fail2ban/jail.d/custom.conf
 wget -O  /etc/fail2ban/jail.d/ddos.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/fail2ban/jail.d/ddos.conf
 fail2ban-client reload
-#------------------------------------------------------------------------------------
-# Install Composer - Fix phpmyadmin install issue
-#------------------------------------------------------------------------------------
-bash <(wget --no-check-certificate -O - https://git.virtubox.net/virtubox/debian-config/raw/master/composer.sh)
-sudo -u www-data composer update -d /var/www/22222/htdocs/db/pma/
-sudo wp --allow-root cli update --nightly
