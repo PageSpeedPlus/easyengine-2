@@ -11,6 +11,7 @@
 # 1. Induviduelle Variabeln
 #------------------------------------------------------------------------------------
 LOGFILE=/var/log/mariadb.sh
+ROOT_SQL_PASS=345Y3nG!n3
 #------------------------------------------------------------------------------------
 # 2. Standart Variabeln
 #------------------------------------------------------------------------------------
@@ -36,7 +37,6 @@ apt-get -qq update > /dev/null 2>&1
 #------------------------------------------------------------------------------------
 # 5. Root Passwort generieren
 #------------------------------------------------------------------------------------
-ROOT_SQL_PASS=$(/dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1; echo;)
 export DEBIAN_FRONTEND=noninteractive
 debconf-set-selections <<< 'mariadb-server mysql-server/root_password password $ROOT_SQL_PASS'
 debconf-set-selections <<< 'mariadb-server mysql-server/root_password_again password $ROOT_SQL_PASS'
