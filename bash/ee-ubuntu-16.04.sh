@@ -108,7 +108,23 @@ wget -O /etc/fail2ban/filter.d/ee-wordpress.conf https://raw.githubusercontent.c
 wget -O /etc/fail2ban/jail.d/custom.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/fail2ban/jail.d/custom.conf
 wget -O  /etc/fail2ban/jail.d/ddos.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/fail2ban/jail.d/ddos.conf
 fail2ban-client reload
+#------------------------------------------------------------------------------------
+Acme.sh
+#------------------------------------------------------------------------------------
+wget -O -  https://get.acme.sh | sh
+source ~/.bashrc
+#------------------------------------------------------------------------------------
+netdata
+#------------------------------------------------------------------------------------
+bash <(curl -Ss https://my-netdata.io/kickstart.sh) all
 
+# save 40-60% of netdata memory
+echo 1 >/sys/kernel/mm/ksm/run
+echo 1000 >/sys/kernel/mm/ksm/sleep_millisecs
+
+# disable email notifications
+wget -O /etc/netdata/health_alarm_notify.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/netdata/health_alarm_notify.conf
+service netdata restart
 #------------------------------------------------------------------------------------
 # PHP 7.1
 #------------------------------------------------------------------------------------
