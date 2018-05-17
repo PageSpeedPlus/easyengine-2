@@ -48,9 +48,9 @@ apt-get -yqq install mariadb-server percona-toolkit > /dev/null 2>&1
 # 7. Root Account Daten in MariaDB Konfig hinterlegen
 #------------------------------------------------------------------------------------
 cat <<EOF >~/.my.cnf
- [client]
- user=root
- password=$ROOT_SQL_PASS
+[client]
+user=root
+password=$ROOT_SQL_PASS
 EOF
 #------------------------------------------------------------------------------------
 # 8. Lade Tools zur MariaDB Optimierung
