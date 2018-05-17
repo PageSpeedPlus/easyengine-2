@@ -126,6 +126,19 @@ echo 1000 >/sys/kernel/mm/ksm/sleep_millisecs
 wget -O /etc/netdata/health_alarm_notify.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/netdata/health_alarm_notify.conf
 service netdata restart
 #------------------------------------------------------------------------------------
+Install extplorer
+#------------------------------------------------------------------------------------
+mkdir /var/www/22222/htdocs/files
+wget http://extplorer.net/attachments/download/74/eXtplorer_2.1.10.zip -O /var/www/22222/htdocs/files/ex.zip
+cd /var/www/22222/htdocs/files && unzip ex.zip && rm ex.zip
+#------------------------------------------------------------------------------------
+Install ee-dashboard
+#------------------------------------------------------------------------------------
+cd ~/
+git clone https://github.com/VirtuBox/easyengine-dashboard.git
+cp -rf easyengine-dashboard/* /var/www/22222/htdocs/
+chown -R www-data:www-data /var/www/22222/htdocs
+#------------------------------------------------------------------------------------
 # PHP 7.1
 #------------------------------------------------------------------------------------
 apt-get -qq update && apt-get -yqq install php7.1-fpm php7.1-cli php7.1-zip php7.1-opcache php7.1-mysql php7.1-mcrypt php7.1-mbstring php7.1-json php7.1-intl php7.1-gd php7.1-curl php7.1-bz2 php7.1-xml php7.1-tidy php7.1-soap php7.1-bcmath > /dev/null 2>&1
