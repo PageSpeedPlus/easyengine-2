@@ -35,23 +35,22 @@ clear
 curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash -s -- --mariadb-server-version=10.2 --skip-maxscale
 apt-get -qq update > /dev/null 2>&1
 #------------------------------------------------------------------------------------
-# 5. Root Passwort generieren
-#------------------------------------------------------------------------------------
-export DEBIAN_FRONTEND=noninteractive
-debconf-set-selections <<< 'mariadb-server mysql-server/root_password password $ROOT_SQL_PASS'
-debconf-set-selections <<< 'mariadb-server mysql-server/root_password_again password $ROOT_SQL_PASS'
-#------------------------------------------------------------------------------------
 # 6. MariaDB installieren
 #------------------------------------------------------------------------------------
 apt-get -yqq install mariadb-server percona-toolkit > /dev/null 2>&1
 #------------------------------------------------------------------------------------
-# 7. Root Account Daten in MariaDB Konfig hinterlegen
+# 7. Root Account Daten in MariaDB Konfig hinterlegen - Then create a file /etc/mysql/conf.d/my.cnf to provide root credentials to EasyEngine with the following content :
 #------------------------------------------------------------------------------------
-cat <<EOF >~/.my.cnf
+cat <<EOF > /etc/mysql/conf.d/my.cnf
 [client]
 user=root
 password=$ROOT_SQL_PASS
 EOF
+echo -e "${GREEN}Passwort: $ROOT_SQL_PASS ${NC}\n"
+#------------------------------------------------------------------------------------
+# 5. Passwort setzten und unnötige Tabellen löschen - It’s not needed to set a root password during the installation, but use the commmand mysql_secure_installation to set the root password and to remove anonymous users and useless tables.
+#------------------------------------------------------------------------------------
+mysql_secure_installation
 #------------------------------------------------------------------------------------
 # 8. Lade Tools zur MariaDB Optimierung
 #------------------------------------------------------------------------------------
