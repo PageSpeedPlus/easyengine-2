@@ -74,9 +74,9 @@ bash cloudflare-ufw.sh
 #------------------------------------------------------------------------------------
 # 11. Tweak Kernel source & Increase open files limits source
 #------------------------------------------------------------------------------------
-wget -O /etc/sysctl.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/sysctl.conf > /dev/null 2>&1
+wget -O /etc/sysctl.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/sysctl.conf > /dev/null 2>&1
 sysctl -p > /dev/null 2>&1
-wget -O /etc/security/limits.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/security/limits.conf > /dev/null 2>&1
+wget -O /etc/security/limits.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/security/limits.conf > /dev/null 2>&1
 #------------------------------------------------------------------------------------
 # 12. Configure Automatic security updates
 #------------------------------------------------------------------------------------
