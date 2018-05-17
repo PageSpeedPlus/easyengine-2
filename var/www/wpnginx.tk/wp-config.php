@@ -23,13 +23,13 @@ define('WP_CACHE', true); // Added by W3 Total Cache
 
 // ** MySQL settings ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'wpnginx_tk' );
+define( 'DB_NAME', 'wx_tk' );
 
 /** MySQL database username */
-define( 'DB_USER', 'wpnginx_tk' );
+define( 'DB_USER', 'ginx' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'dmJAE4RZyFonpMP' );
+define( 'DB_PASSWORD', 'laWonpMP' );
 
 /** MySQL hostname */
 define( 'DB_HOST', 'localhost' );
@@ -64,7 +64,7 @@ define( 'NONCE_SALT',       'Y_.@l_oWcmg.j:HeV`InJmM!Xr(5RPf~1LQM@@D,>OLf0ft0:ct
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = 'wp_';
+$table_prefix = 'wp347'
 
 
  
