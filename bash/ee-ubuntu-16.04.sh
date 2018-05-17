@@ -109,10 +109,10 @@ wget -O /etc/fail2ban/jail.d/custom.conf https://raw.githubusercontent.com/Virtu
 wget -O  /etc/fail2ban/jail.d/ddos.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/fail2ban/jail.d/ddos.conf
 fail2ban-client reload
 #------------------------------------------------------------------------------------
-Acme.sh
+Acme.sh - ee-acme-sh - https://github.com/VirtuBox/ee-acme-sh
 #------------------------------------------------------------------------------------
-wget -O -  https://get.acme.sh | sh
-source ~/.bashrc
+cd && bash <(wget --no-check-certificate -O - https://raw.githubusercontent.com/VirtuBox/ee-acme-sh/master/install.sh)
+source .bashrc
 #------------------------------------------------------------------------------------
 netdata
 #------------------------------------------------------------------------------------
