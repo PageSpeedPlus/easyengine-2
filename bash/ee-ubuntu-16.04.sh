@@ -70,6 +70,7 @@ systemctl restart nginx
 # Allow shell for www-data for SFTP usage
 #------------------------------------------------------------------------------------
 usermod -s /bin/bash www-data
+passwd www-data
 #------------------------------------------------------------------------------------
 # Install Composer - Fix phpmyadmin install issue
 #------------------------------------------------------------------------------------
