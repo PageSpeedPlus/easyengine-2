@@ -90,3 +90,27 @@ systemctl restart php7.2-fpm
 # 7. NGiNX neu laden
 #------------------------------------------------------------------------------------
 systemctl restart nginx
+#------------------------------------------------------------------------------------
+# www-data als ssh user nutzen
+#------------------------------------------------------------------------------------
+usermod -s /bin/bash www-data
+#------------------------------------------------------------------------------------
+# Install Composer - Fix phpmyadmin install issue
+#------------------------------------------------------------------------------------
+cd ~/
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/bin/composer
+sudo -u www-data composer update -d /var/www/22222/htdocs/db/pma/
+#------------------------------------------------------------------------------------
+Install extplorer
+#------------------------------------------------------------------------------------
+mkdir /var/www/22222/htdocs/files
+wget http://extplorer.net/attachments/download/74/eXtplorer_2.1.10.zip -O /var/www/22222/htdocs/files/ex.zip
+cd /var/www/22222/htdocs/files && unzip ex.zip && rm ex.zip
+#------------------------------------------------------------------------------------
+Install ee-dashboard
+#------------------------------------------------------------------------------------
+cd ~/
+git clone https://github.com/VirtuBox/easyengine-dashboard.git
+cp -rf easyengine-dashboard/* /var/www/22222/htdocs/
+chown -R www-data:www-data /var/www/22222/htdocs
