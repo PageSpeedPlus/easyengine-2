@@ -2,7 +2,7 @@
 # ===================================================================================
 # | Monit (EasyEngine)- Installation & Konfiguration
 # ===================================================================================
-# Script: ee-monit.sh
+# Script: monit.sh
 # Version: 1.0.0
 # Date: 2018-05-11
 # Author: Daniel Bieli <danibieli.1185@gmail.com>
@@ -10,7 +10,7 @@
 #------------------------------------------------------------------------------------
 # 1. Induviduelle Variabeln
 #------------------------------------------------------------------------------------
-LOGFILE=/var/log/ee-monit.sh.log
+LOGFILE=/var/log/monit.sh.log
 MONITUSER=monit
 MONITPW=easyengine
 MONITPORT=2812
