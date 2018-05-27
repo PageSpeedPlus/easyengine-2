@@ -59,7 +59,7 @@ maxretry = 2
 
 
 [mysqld-auth]
-enabled = true
+enabled = false
 port = 3306
 logpath = %(mysql_log)s
 
