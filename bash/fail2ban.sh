@@ -39,3 +39,7 @@ wget -O /etc/fail2ban/jail.local https://raw.githubusercontent.com/PageSpeedPlus
 wget -O /etc/fail2ban/fail2ban.local https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/fail2ban/fail2ban.local
 wget -O /etc/fail2ban/filter.d/ee-wordpress.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/fail2ban/filter.d/ee-wordpress.conf
 wget -O /etc/fail2ban/action.d/abuseipdb.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/fail2ban/action.d/abuseipdb.conf
+#------------------------------------------------------------------------------------
+# 6. Fail2Ban neu laden
+#------------------------------------------------------------------------------------
+fail2ban-client reload
