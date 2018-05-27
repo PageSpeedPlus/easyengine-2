@@ -31,7 +31,7 @@ clear
 #------------------------------------------------------------------------------------
 # EasyEngine installieren
 #------------------------------------------------------------------------------------
-wget -qO ee rt.cx/ee && bash ee > /dev/null 2>&1
+wget -qO ee rt.cx/ee && bash ee
 source /etc/bash_completion.d/ee_auto.rc
 ee stack install
 ee stack install --php7 --redis --admin --phpredisadmin
