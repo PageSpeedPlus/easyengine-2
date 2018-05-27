@@ -52,64 +52,37 @@ port    = 80,443,22222
 logpath = %(nginx_error_log)s
 
 
-[nginx-limit-req]
-enabled = false
-port    = 80,443,22222
-logpath = %(nginx_error_log)s
-
-
 [nginx-botsearch]
-enabled = true
-port    = 80,443,22222
+enabled  = true
+port     = 80,443,22222
 logpath  = %(nginx_error_log)s
 maxretry = 2
 
 
 [mysqld-auth]
 enabled = true
-port     = 3306
-logpath  = %(mysql_log)s
-backend  = %(mysql_backend)s
+port    = 3306
+logpath = %(mysql_log)s
+backend = %(mysql_backend)s
 
 
 [ee-wordpress]
 enabled = true
-filter = ee-wordpress
-action = iptables-multiport[name="ee-wordpress", port="80,443"]
+filter  = ee-wordpress
+action  = iptables-multiport[name="ee-wordpress", port="80,443"]
 logpath = /var/log/nginx/*access.log
-
-
-[phpmyadmin-syslog]
-enabled = true
-port    = 80,443,22222
-logpath = %(syslog_authpriv)s
-backend = %(syslog_backend)s
 
 
 [php-url-fopen]
 enabled = true
 port    = 80,443,22222
 logpath = %(nginx_access_log)s
-          %(apache_access_log)s
 
 
 [monit]
 enabled = true
 port    = 2812
 logpath = /var/log/monit
-
-
-[webmin-auth]
-enabled = false
-port    = 10000
-logpath = %(syslog_authpriv)s
-backend = %(syslog_backend)s
-
-
-[roundcube-auth]
-enabled = false
-port    = 80,443,22222
-logpath  = %(roundcube_errors_log)s
 
 
 [postfix]
@@ -134,3 +107,16 @@ filter  = postfix[mode=auth]
 port    = smtp,465,submission,imap,imaps,pop3,pop3s
 logpath = %(postfix_log)s
 backend = %(postfix_backend)s
+
+
+[roundcube-auth]
+enabled = false
+port    = 80,443,22222
+logpath  = %(roundcube_errors_log)s
+
+
+[webmin-auth]
+enabled = false
+port    = 10000
+logpath = %(syslog_authpriv)s
+backend = %(syslog_backend)s
