@@ -1,13 +1,12 @@
 [INCLUDES]
 
-#before = paths-distro.conf
 before = paths-debian.conf
 
 [DEFAULT]
 
 ignorecommand =
-bantime  = 10m
-findtime  = 10m
+bantime  = -1
+findtime  = 15m
 maxretry = 5
 backend = auto
 usedns = warn
@@ -15,7 +14,7 @@ logencoding = auto
 enabled = false
 mode = normal
 filter = %(__name__)s[mode=%(mode)s]
-destemail = root@localhost
+destemail = danibieli.1185@gmail.com
 sender = root@<fq-hostname>
 mta = sendmail
 protocol = tcp
@@ -41,90 +40,89 @@ action = %(action_)s
 
 
 [sshd]
-
-port    = ssh
+enabled = true
+port    = 22
 logpath = %(sshd_log)s
 backend = %(sshd_backend)s
 
 
 [nginx-http-auth]
-
-port    = http,https,22222
+enabled = true
+port    = 80,443,22222
 logpath = %(nginx_error_log)s
 
 
 [nginx-limit-req]
-port    = http,https
+enabled = false
+port    = 80,443,22222
 logpath = %(nginx_error_log)s
 
 
 [nginx-botsearch]
-
-port     = http,https
+enabled = true
+port    = 80,443,22222
 logpath  = %(nginx_error_log)s
 maxretry = 2
 
 
 [mysqld-auth]
-
+enabled = true
 port     = 3306
 logpath  = %(mysql_log)s
 backend  = %(mysql_backend)s
 
 
 [phpmyadmin-syslog]
-
-port    = http,https,22222
+enabled = true
+port    = 80,443,22222
 logpath = %(syslog_authpriv)s
 backend = %(syslog_backend)s
 
 
 [php-url-fopen]
-
-port    = http,https
+enabled = true
+port    = 80,443,22222
 logpath = %(nginx_access_log)s
           %(apache_access_log)s
 
 
 [monit]
-
-port = 2812,22222
-logpath  = /var/log/monit
+enabled = true
+port    = 2812
+logpath = /var/log/monit
 
 
 [webmin-auth]
-
+enabled = false
 port    = 10000
 logpath = %(syslog_authpriv)s
 backend = %(syslog_backend)s
 
 
 [roundcube-auth]
-
-port     = http,https
+enabled = false
+port    = 80,443,22222
 logpath  = %(roundcube_errors_log)s
 
 
 [postfix]
-
+enabled = true
 mode    = more
-port    = smtp,465,submission
+port    = 25,465,587
 logpath = %(postfix_log)s
 backend = %(postfix_backend)s
 
 
 [postfix-rbl]
-
-filter   = postfix[mode=rbl]
-port     = smtp,465,submission
-logpath  = %(postfix_log)s
-backend  = %(postfix_backend)s
-maxretry = 1
-
+enabled = false
+filter  = postfix[mode=rbl]
+port    = 25,465,587
+logpath = %(postfix_log)s
+backend = %(postfix_backend)s
 
 [postfix-sasl]
-
-filter   = postfix[mode=auth]
-port     = smtp,465,submission,imap,imaps,pop3,pop3s
-logpath  = %(postfix_log)s
-backend  = %(postfix_backend)s
+enabled = false
+filter  = postfix[mode=auth]
+port    = smtp,465,submission,imap,imaps,pop3,pop3s
+logpath = %(postfix_log)s
+backend = %(postfix_backend)s
