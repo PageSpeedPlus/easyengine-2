@@ -4,8 +4,12 @@
 
 ### Distro
 
-- Ubuntu 12.04 & 14.04 & 16.04
-- Debian 7 & 8
+- Ubuntu 16.04
+
+### Voraussetzung
+
+- Non-root User
+- Hostname
 
 ### Port Requirements:
 
@@ -16,6 +20,8 @@
 |HTTPS/SSL    |443           | ✓       |✓          |
 |EE Admin    |22222           | ✓       |          |
 |GPG Key Server    |11371           |        |✓          |
+
+
 
 ### Cheatsheet - Site creation
 
@@ -54,48 +60,6 @@ ee site create example.com --mysql    # create example.com with php & mysql supp
 ```bash
 ee site create example.com --wp --hhvm           # create example.com WordPress site with HHVM support
 ee site create example.com --php --hhvm          # create example.com php site with HHVM support
-```
-
-
----
-
-
-### Installation/Setup
-
-#### Voraussetzung
-
-* Non-root User
-* Hostname 
-
-##### Non-root User
-
-```bash
-adduser name
-usermod -a -G sudo isp
-```
-
-##### Hostname
-
-```bash
-nano /etc/hostname
-nano /etc/hosts
-reboot
-```
-
-###### /etc/hostname
-
-```bash
-export HOSTNAMESHORT="server1"
-echo $HOSTNAMESHORT > /etc/hostname
-/etc/init.d/hostname.sh start
-```
-
-###### /etc/hosts
-
-#### Installation EasyEngine
-
-```bash
-wget -qO ee rt.cx/ee && sudo bash ee     # Install easyengine 3
 ```
 
 #### Installation Monit
