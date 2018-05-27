@@ -1,46 +1,57 @@
 set idfile /var/run/monit-id
 set statefile /var/run/monit-state
-set logfile /var/log/monit.log
-
-set mailserver localhost
-set mail-format { from: monit@localhost }
-
-set alert root@localhost
-
-#Monitoring Interval in Seconds
 set daemon 60
+set logfile /var/log/monit.log
+# ssl enable                      
+# pemfile /usr/local/ispconfig/interface/ssl/ispserver.pem	# The PEM file
+signature disable 	# No server signature to send
+allow monit:monit
+# Mail
+set httpd port 2812		
+set mailserver smtp.gmail.com port 587
+        username "gmail_username" password "password" # this is the gmail account that will send the alert
+        using tlsv1 with timeout 30 seconds
+set alert email@address.com with reminder on 15 cycles # this address will receive the alert
+set mail-format {
+        from: gmail_username@gmail.com
+        reply-to: gmail_username@gmail.com
+        subject: DOMAIN.COM ALERT: $SERVICE $EVENT at $DATE
+        message: Monit $ACTION $SERVICE at $DATE on $HOST: $DESCRIPTION.
+        Sincerely,
+                Your MonitRobot
+}
 
-#Enable Web Access
-set httpd port 2812
-     allow admin:easyengine
+# ln -s /monit.d/system/sshd sshd
+include /etc/monit/conf.d/*.conf
 
-#Event Queue for 5000 events
-set eventqueue basedir /var/monit slots 5000
+# The System
+check system $HOST
+    if loadavg (5min) > 3 then alert
+    if loadavg (15min) > 1 then alert
+    if memory usage > 80% for 4 cycles then alert
+    if swap usage > 20% for 4 cycles then alert
+    # Test the user part of CPU usage 
+    if cpu usage (user) > 80% for 2 cycles then alert
+    # Test the system part of CPU usage 
+    if cpu usage (system) > 20% for 2 cycles then alert
+    # Test the i/o wait part of CPU usage 
+    if cpu usage (wait) > 80% for 2 cycles then alert
+    # Test CPU usage including user, system and wait. Note that 
+    # multi-core systems can generate 100% per core
+    # so total CPU usage can be more than 100%
+    if cpu usage > 200% for 4 cycles then alert
+    
+ # Cron
+ 
+  check process cron with pidfile /var/run/cron.pid
+   group system
+   start program = "/etc/init.d/cron start"
+   stop  program = "/etc/init.d/cron stop"
+   depends on cron_rc
 
-#MySQL Monitoring
-check process mysqld with pidfile "/var/run/mysqld/mysqld.pid"				
-	if cpu > 80% for 2 cycles then alert
-
-#PHP-FPM
-check process php5-fpm with pidfile "/var/run/php5-fpm.pid"
-	if cpu > 80% for 2 cycles then alert
-
-#Nginx
-check process nginx with pidfile "/var/run/nginx.pid"
-	if cpu > 80% for 2 cycles then alert
-
-#System Monitoring 
-check system PUT_YOUR_HOSTNAME_HERE
-	if memory usage > 80% for 2 cycles then alert
-	if cpu usage (user) > 70% for 2 cycles then alert
-        if cpu usage (system) > 30% then alert
- 	if cpu usage (wait) > 20% then alert
-	if loadavg (1min) > 2 for 2 cycles then alert 
-	if loadavg (5min) > 1 for 2 cycles then alert
-	if swap usage > 5% then alert
-
-check filesystem rootfs with path /
-       if space usage > 80% then alert
-
-##mmonit (optional)
-#set mmonit http://user:pass@IP:port/collector
+ check file cron_rc with path /etc/init.d/cron
+   group system
+   if failed checksum then unmonitor
+   if failed permission 755 then unmonitor
+   if failed uid root then unmonitor
+   if failed gid root then unmonitor
