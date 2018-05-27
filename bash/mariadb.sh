@@ -37,7 +37,7 @@ apt-get -qq update > /dev/null 2>&1
 #------------------------------------------------------------------------------------
 # 5. MariaDB installieren
 #------------------------------------------------------------------------------------
-apt-get -yqq install mariadb-server percona-toolkit percona-xtrabackup-24 > /dev/null 2>&1
+apt-get -y install mariadb-server percona-toolkit percona-xtrabackup-24
 #------------------------------------------------------------------------------------
 # 6. Root Account Daten in MariaDB Konfig hinterlegen - Then create a file /etc/mysql/conf.d/my.cnf to provide root credentials to EasyEngine with the following content :
 #------------------------------------------------------------------------------------
