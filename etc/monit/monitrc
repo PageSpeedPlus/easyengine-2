@@ -28,7 +28,7 @@ include /etc/monit/conf.d/*.conf
 #Event Queue for 5000 events
 set eventqueue basedir /var/monit slots 5000
 
-# The System
+# The System - Change numbers 2 and 1 in loadavg lines based on number of CPU cores on your system.
 check system $HOST
     if loadavg (5min) > 2 then alert
     if loadavg (15min) > 1 then alert
