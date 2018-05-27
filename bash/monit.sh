@@ -53,6 +53,7 @@ sed -i 's/allow admin:easyengine/allow $MONITUSER:$MONITPW/' /etc/monit/monitrc
 # 6. UFW Firewall Port öffnen für Webzugriff
 #------------------------------------------------------------------------------------
 ufw allow $MONITPORT > /dev/null 2>&1
+systemctl restart ufw
 #------------------------------------------------------------------------------------
 # 7. Monit starten
 #------------------------------------------------------------------------------------
