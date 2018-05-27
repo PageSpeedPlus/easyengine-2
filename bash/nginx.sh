@@ -58,28 +58,35 @@ wget -O /etc/nginx/conf.d/redis.conf https://raw.githubusercontent.com/PageSpeed
 wget -O /etc/nginx/conf.d/upstream.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/conf.d/upstream-7-72.conf
 wget -O /etc/nginx/conf.d/webp.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/conf.d/webp.conf
 # /etc/nginx/common/
-
+wget -O /etc/nginx/common/cache-enabler.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/cache-enabler.conf
+wget -O /etc/nginx/common/locations-php7.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/locations-php7.conf
+wget -O /etc/nginx/common/locations-php72.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/locations-php72.conf
+wget -O /etc/nginx/common/ocsp.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/ocsp.conf
 wget -O /etc/nginx/common/pagespeed-vhost.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/pagespeed-vhost.conf
-
-
-systemctl restart nginx
+wget -O /etc/nginx/common/php7.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/php7.conf
+wget -O /etc/nginx/common/php72.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/php72.conf
+wget -O /etc/nginx/common/redis-php72.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/redis-php72.conf
+wget -O /etc/nginx/common/w3tc-php72.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/w3tc-php72.conf
+wget -O /etc/nginx/common/wcws-php7.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/wcws-php7.conf
+wget -O /etc/nginx/common/wcws-php72.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/wcws-php72.conf
+wget -O /etc/nginx/common/wpcommon-php7.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/wpcommon-php7.conf
+wget -O /etc/nginx/common/wpcommon-php72.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/wpcommon-php72.conf
+wget -O /etc/nginx/common/wpfc-php72.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/wpfc-php72.conf
+wget -O /etc/nginx/common/wpsc-php72.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/wpsc-php72.conf
 #------------------------------------------------------------------------------------
 # 5. PHP 7.0
 #------------------------------------------------------------------------------------
 wget -O /etc/php/7.0/cli/php.ini https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/php/7.0/cli/php.ini
 wget -O /etc/php/7.0/fpm/php.ini https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/php/7.0/fpm/php.ini
 systemctl restart php7.0-fpm
-
-wget -O /etc/nginx/common/wpcommon-php7.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/common/wpcommon-php7.conf
-systemctl restart nginx
 #------------------------------------------------------------------------------------
-# PHP 7.2
+# 6. PHP 7.2
 #------------------------------------------------------------------------------------
 apt-get -qq update && apt-get -yqq php7.2-fpm php7.2-xml php7.2-bz2 php7.2-zip php7.2-mysql php7.2-intl php7.2-gd php7.2-curl php7.2-soap php7.2-mbstring > /dev/null 2>&1
 wget -O /etc/php/7.2/fpm/php.ini https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/php/7.2/fpm/php.ini
 wget -O /etc/php/7.2/fpm/pool.d/www.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/php/7.2/fpm/pool.d/www.conf
-
 systemctl restart php7.2-fpm
-
-wget -O /etc/nginx/common/wpcommon-php72.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/common/wpcommon-php72.conf
+#------------------------------------------------------------------------------------
+# 7. NGiNX neu laden
+#------------------------------------------------------------------------------------
 systemctl restart nginx
