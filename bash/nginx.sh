@@ -11,6 +11,7 @@
 # 1. Induviduelle Variabeln
 #------------------------------------------------------------------------------------
 LOGFILE=/var/log/nginx.sh.log
+SYSTEMMAILRECIPIENT=danibieli.1185@gmail.com
 #------------------------------------------------------------------------------------
 # 2. Standart Variabeln
 #------------------------------------------------------------------------------------
@@ -94,6 +95,8 @@ systemctl restart nginx
 # www-data als ssh user nutzen
 #------------------------------------------------------------------------------------
 usermod -s /bin/bash www-data
+echo "root: $SYSTEMMAILRECIPIENT" >> /etc/aliases
+newaliases
 #------------------------------------------------------------------------------------
 # Install Composer - Fix phpmyadmin install issue
 #------------------------------------------------------------------------------------
