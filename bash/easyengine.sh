@@ -40,14 +40,6 @@ ee stack install --php7 --redis --admin --phpredisadmin
 #------------------------------------------------------------------------------------
 echo never > /sys/kernel/mm/transparent_hugepage/enabled
 #------------------------------------------------------------------------------------
-# Install Composer - Fix phpmyadmin install issue
-#------------------------------------------------------------------------------------
-cd ~/
-curl -sS https://getcomposer.org/installer | php
-mv composer.phar /usr/bin/composer
-sudo -u www-data composer update -d /var/www/22222/htdocs/db/pma/
-wp --allow-root cli update --nightly
-#------------------------------------------------------------------------------------
 # Secure Memcached server
 #------------------------------------------------------------------------------------
 echo '-U 0' >> /etc/memcached.conf 
