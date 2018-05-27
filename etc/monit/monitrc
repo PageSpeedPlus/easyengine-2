@@ -59,7 +59,12 @@ check filesystem rootfs with path /
 # Nginx
 #check process nginx with pidfile "/var/run/nginx.pid"
 #	if cpu > 80% for 2 cycles then alert
-#
+
+# Fail2Ban
+#check process fail2ban with pidfile /var/run/fail2ban/fail2ban.pid  
+#        start program = "/etc/init.d/fail2ban start"  
+#        stop program = "/etc/init.d/fail2ban stop" 
+
 # System Monitoring 
 #check system PUT_YOUR_HOSTNAME_HERE
 #	if memory usage > 80% for 2 cycles then alert
