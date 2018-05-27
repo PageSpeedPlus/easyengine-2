@@ -48,40 +48,16 @@ sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_c
 sed -i 's/PermitRootLogin yes/PermitRootLogin without-password/' /etc/ssh/sshd_config
 /etc/init.d/ssh restart
 #------------------------------------------------------------------------------------
-# 8. Syntax Highlighten im nano Editor
-#------------------------------------------------------------------------------------
-wget https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh -O- | sh
-#------------------------------------------------------------------------------------
-# 9. UFW Firewall konfigurieren & aktivieren
-#------------------------------------------------------------------------------------
-ufw logging on
-ufw default allow outgoing
-ufw default deny incoming
-ufw allow 22
-ufw allow http
-ufw allow https
-ufw allow 123
-ufw allow 161
-ufw allow 6556
-ufw allow 19999
-ufw allow 22222
-ufw enable
-#------------------------------------------------------------------------------------
-# 10. Whitelist Cloudflare network IPv4+IPv6
-#------------------------------------------------------------------------------------
-wget https://raw.githubusercontent.com/Paul-Reed/cloudflare-ufw/master/cloudflare-ufw.sh
-bash cloudflare-ufw.sh
-#------------------------------------------------------------------------------------
-# 11. Tweak Kernel source & Increase open files limits source
+# 8. Tweak Kernel source & Increase open files limits source
 #------------------------------------------------------------------------------------
 wget -O /etc/sysctl.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/sysctl.conf > /dev/null 2>&1
 sysctl -p > /dev/null 2>&1
 wget -O /etc/security/limits.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/security/limits.conf > /dev/null 2>&1
 #------------------------------------------------------------------------------------
-# 12. Configure Automatic security updates
+# 9. Configure Automatic security updates
 #------------------------------------------------------------------------------------
 dpkg-reconfigure unattended-upgrades
 #------------------------------------------------------------------------------------
-# 13. Skript Ende & Logfile Pfad Ausgabe
+# 10. Skript Ende & Logfile Pfad Ausgabe
 #------------------------------------------------------------------------------------
 echo -e "${GREEN}Ubuntu 16.04 Grundkonfiguration abgeschlossen - Logfile: $LOGFILE ${NC}\n"
