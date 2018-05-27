@@ -51,7 +51,7 @@ ufw enable
 mkdir /home/tools
 wget -O /home/tools/cloudflare-ufw.sh https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/home/tools/cloudflare-ufw.sh
 chmod 700 /home/tools/cloudflare-ufw.sh
-bash cloudflare-ufw.sh
+bash /home/tools/cloudflare-ufw.sh
 systemctl restart ufw
 #------------------------------------------------------------------------------------
 # 7. Skript Ende & Logfile Pfad Ausgabe
