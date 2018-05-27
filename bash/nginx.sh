@@ -83,7 +83,7 @@ systemctl restart php7.0-fpm
 #------------------------------------------------------------------------------------
 # 6. PHP 7.2
 #------------------------------------------------------------------------------------
-apt-get update && apt-get -y install php7.2-fpm php7.2-xml php7.2-bz2 php7.2-zip php7.2-mysql php7.2-intl php7.2-gd php7.2-curl php7.2-soap php7.2-mbstring > /dev/null 2>&1
+apt-get update && apt-get -y install php7.2-fpm php7.2-bz2 php7.2-cli php7.2-common php7.2-curl php7.2-gd php7.2-intl php7.2-json php7.2-mysql php7.2-mcrypt php7.2-mbstring php7.2-opcache php7.2-soap php7.2-xml php7.2-zip > /dev/null 2>&1
 wget -O /etc/php/7.2/fpm/php.ini https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/php/7.2/fpm/php.ini
 wget -O /etc/php/7.2/fpm/pool.d/www.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/php/7.2/fpm/pool.d/www.conf
 systemctl restart php7.2-fpm
