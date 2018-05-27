@@ -33,7 +33,7 @@ server {
 	# phpfpm pool monitoring
 	location ~ ^/(status|ping) {
   	include fastcgi_params;
- 	fastcgi_pass php72;
+ 	fastcgi_pass php;
   	include common/acl.conf;
 	}
 }
