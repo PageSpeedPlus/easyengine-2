@@ -80,7 +80,7 @@ logpath = %(nginx_access_log)s
 [monit]
 enabled = true
 port = 2812
-logpath = /var/log/monit
+logpath = /var/log/monit.log
 
 
 [postfix]
