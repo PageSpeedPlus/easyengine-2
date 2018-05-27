@@ -47,14 +47,7 @@ bash <(wget --no-check-certificate -O - https://raw.githubusercontent.com/PageSp
 #------------------------------------------------------------------------------------
 # 8. EasyEngine installieren
 #------------------------------------------------------------------------------------
-wget -qO ee rt.cx/ee && bash ee > /dev/null 2>&1
-source /etc/bash_completion.d/ee_auto.rc
-ee stack install
-ee stack install --php7 --redis --admin --phpredisadmin
-#------------------------------------------------------------------------------------
-# disable transparent hugepage for redis
-#------------------------------------------------------------------------------------
-echo never > /sys/kernel/mm/transparent_hugepage/enabled
+bash <(wget --no-check-certificate -O - https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/bash/easyengine.sh)
 #------------------------------------------------------------------------------------
 # 9. NGiNX kompilieren
 #------------------------------------------------------------------------------------
@@ -73,17 +66,6 @@ wget -O /etc/nginx/sites-available/default  https://raw.githubusercontent.com/Vi
 wget -O /etc/nginx/sites-available/22222 https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/sites-available/22222
 systemctl restart nginx
 #------------------------------------------------------------------------------------
-# Allow shell for www-data for SFTP usage
-#------------------------------------------------------------------------------------
-usermod -s /bin/bash www-data
-passwd www-data
-#------------------------------------------------------------------------------------
-# Install Composer - Fix phpmyadmin install issue
-#------------------------------------------------------------------------------------
-bash <(wget --no-check-certificate -O - https://git.virtubox.net/virtubox/debian-config/raw/master/composer.sh)
-sudo -u www-data composer update -d /var/www/22222/htdocs/db/pma/
-sudo wp --allow-root cli update --nightly
-#------------------------------------------------------------------------------------
 # PHP 7.0
 #------------------------------------------------------------------------------------
 wget -O /etc/php/7.0/cli/php.ini https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/php/7.0/cli/php.ini
@@ -92,11 +74,6 @@ service php7.0-fpm restart > /dev/null 2>&1
 
 wget -O /etc/nginx/common/wpcommon-php7.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/common/wpcommon-php7.conf
 service nginx reload
-#------------------------------------------------------------------------------------
-# Secure Memcached server
-#------------------------------------------------------------------------------------
-echo '-U 0' >> /etc/memcached.conf 
-systemctl restart memcached
 #------------------------------------------------------------------------------------
 # PHP 7.2
 #------------------------------------------------------------------------------------
@@ -121,19 +98,6 @@ Acme.sh - ee-acme-sh - https://github.com/VirtuBox/ee-acme-sh
 #------------------------------------------------------------------------------------
 cd && bash <(wget --no-check-certificate -O - https://raw.githubusercontent.com/VirtuBox/ee-acme-sh/master/install.sh)
 source .bashrc
-#------------------------------------------------------------------------------------
-Install extplorer
-#------------------------------------------------------------------------------------
-mkdir /var/www/22222/htdocs/files
-wget http://extplorer.net/attachments/download/74/eXtplorer_2.1.10.zip -O /var/www/22222/htdocs/files/ex.zip
-cd /var/www/22222/htdocs/files && unzip ex.zip && rm ex.zip
-#------------------------------------------------------------------------------------
-Install ee-dashboard
-#------------------------------------------------------------------------------------
-cd ~/
-git clone https://github.com/VirtuBox/easyengine-dashboard.git
-cp -rf easyengine-dashboard/* /var/www/22222/htdocs/
-chown -R www-data:www-data /var/www/22222/htdocs
 #------------------------------------------------------------------------------------
 # PHP 7.1
 #------------------------------------------------------------------------------------
