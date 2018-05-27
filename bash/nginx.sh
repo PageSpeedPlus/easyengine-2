@@ -31,8 +31,22 @@ clear
 #------------------------------------------------------------------------------------
 # 4. NGiNX konfigurieren
 #------------------------------------------------------------------------------------
+# Geo IP
+mkdir -p /usr/share/GeoIP
+wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
+gunzip GeoIP.dat.gz
+mv GeoIP.dat /usr/share/GeoIP/GeoIP.dat
+wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
+gunzip GeoLiteCity.dat.gz
+mv GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat
+wget -O /home/tools/nginx-geoip-update.sh https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/home/tools/nginx-geoip-update.sh
+chmod 700 /home/tools/nginx-geoip-update.sh
+# /etc/nginx/nginx.conf
 wget -O /etc/nginx/nginx.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/nginx.conf
+wget -O /etc/nginx/mime.types https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/mime.types
+
 wget -O /etc/nginx/conf.d/webp.conf  https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/conf.d/webp.conf
+
 
 wget -O /etc/nginx/conf.d/upstream.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/conf.d/upstream.conf
 wget -O /etc/nginx/conf.d/pagespeed.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/conf.d/pagespeed.conf
