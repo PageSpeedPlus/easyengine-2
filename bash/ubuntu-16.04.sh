@@ -35,7 +35,7 @@ apt-get -qq update && apt-get -yqq upgrade && apt-get -yqq autoremove && apt-get
 #------------------------------------------------------------------------------------
 # 5. Benötigte Software installieren
 #------------------------------------------------------------------------------------
-apt-get -yqq install manpages-de cron-apt unattended-upgrades curl wget ufw haveged git unzip zip fail2ban htop dnsutils zoo bzip2 arj nomarch lzop cabextract locate apt-listchanges apt-transport-https software-properties-common lsb-release ca-certificates ssh openssh-server ntp ntpdate debconf-utils binutils sudo e2fsprogs openssh-server openssl ssl-cert mcrypt nano rsync > /dev/null 2>&1
+apt-get -yqq install manpages-de cron-apt unattended-upgrades curl wget ufw haveged git unzip zip fail2ban htop dnsutils zoo gunzip bzip2 arj nomarch lzop cabextract locate apt-listchanges apt-transport-https software-properties-common lsb-release ca-certificates ssh openssh-server ntp ntpdate debconf-utils binutils sudo e2fsprogs openssh-server openssl ssl-cert mcrypt nano rsync > /dev/null 2>&1
 #------------------------------------------------------------------------------------
 # 6. Standart Shell von Dash auf Bash Shell umstellen
 #------------------------------------------------------------------------------------
