@@ -10,7 +10,7 @@
 #------------------------------------------------------------------------------------
 # 1. Induviduelle Variabeln
 #------------------------------------------------------------------------------------
-LOGFILE=/var/log/ee-ubuntu-16.04.sh
+LOGFILE=/var/log/ee-ubuntu-16.04.sh.log
 #------------------------------------------------------------------------------------
 # 2. Standart Variabeln
 #------------------------------------------------------------------------------------
@@ -33,11 +33,19 @@ clear
 #------------------------------------------------------------------------------------
 bash <(wget --no-check-certificate -O - https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/bash/ubuntu-16.04.sh)
 #------------------------------------------------------------------------------------
-# 5. MariaDB 10.2 installieren
+# 5. UFW Firewall einrichten & Cloudflare IPs whitelisten
+#------------------------------------------------------------------------------------
+bash <(wget --no-check-certificate -O - https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/bash/ufw.sh)
+#------------------------------------------------------------------------------------
+# 6. Syntax Highlighten im nano Editor
+#------------------------------------------------------------------------------------
+wget https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh -O- | sh
+#------------------------------------------------------------------------------------
+# 7. MariaDB 10.2 installieren
 #------------------------------------------------------------------------------------
 bash <(wget --no-check-certificate -O - https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/bash/mariadb.sh)
 #------------------------------------------------------------------------------------
-# 6. EasyEngine installieren
+# 8. EasyEngine installieren
 #------------------------------------------------------------------------------------
 wget -qO ee rt.cx/ee && bash ee > /dev/null 2>&1
 source /etc/bash_completion.d/ee_auto.rc
@@ -48,7 +56,7 @@ ee stack install --php7 --redis --admin --phpredisadmin
 #------------------------------------------------------------------------------------
 echo never > /sys/kernel/mm/transparent_hugepage/enabled
 #------------------------------------------------------------------------------------
-# 7. NGiNX kompilieren
+# 9. NGiNX kompilieren
 #------------------------------------------------------------------------------------
 bash <(wget --no-check-certificate -O - https://raw.githubusercontent.com/VirtuBox/nginx-ee/master/nginx-build.sh)
 #------------------------------------------------------------------------------------
