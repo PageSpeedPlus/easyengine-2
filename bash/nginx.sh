@@ -105,13 +105,30 @@ curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/bin/composer
 sudo -u www-data composer update -d /var/www/22222/htdocs/db/pma/
 #------------------------------------------------------------------------------------
-Install extplorer
+# Install adminer-4.6.2
+#------------------------------------------------------------------------------------
+cd /var/www/22222/htdocs/db
+rm /var/www/22222/htdocs/db/adminer/index.php
+git clone https://github.com/natanfelles/adminer-bootstrap-like.git
+mv /var/www/22222/htdocs/db/adminer-bootstrap-like/* /var/www/22222/htdocs/db/adminer/
+rm -Rf /var/www/22222/htdocs/db/adminer-bootstrap-like
+rm /var/www/22222/htdocs/db/adminer/adminer-4.6.2.php
+wget -O /var/www/22222/htdocs/db/adminer/adminer-4.6.2.php https://www.adminer.org/latest-mysql-de.php
+chown -R www-data:www-data /var/www/22222/htdocs
+#------------------------------------------------------------------------------------
+# Install extplorer
 #------------------------------------------------------------------------------------
 mkdir /var/www/22222/htdocs/files
 wget http://extplorer.net/attachments/download/74/eXtplorer_2.1.10.zip -O /var/www/22222/htdocs/files/ex.zip
 cd /var/www/22222/htdocs/files && unzip ex.zip && rm ex.zip
 #------------------------------------------------------------------------------------
-Install ee-dashboard
+# Install adminer-editor
+#------------------------------------------------------------------------------------
+mkdir /var/www/22222/htdocs/db/adminer-editor
+wget -O /var/www/22222/htdocs/db/adminer-editor/index.php https://github.com/vrana/adminer/releases/download/v4.6.2/editor-4.6.2-mysql-de.php
+chown -R www-data:www-data /var/www/22222/htdocs
+#------------------------------------------------------------------------------------
+# Install ee-dashboard
 #------------------------------------------------------------------------------------
 cd ~/
 git clone https://github.com/VirtuBox/easyengine-dashboard.git
