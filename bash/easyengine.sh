@@ -53,19 +53,6 @@ wp --allow-root cli update --nightly
 echo '-U 0' >> /etc/memcached.conf 
 systemctl restart memcached
 #------------------------------------------------------------------------------------
-Install extplorer
-#------------------------------------------------------------------------------------
-mkdir /var/www/22222/htdocs/files
-wget http://extplorer.net/attachments/download/74/eXtplorer_2.1.10.zip -O /var/www/22222/htdocs/files/ex.zip
-cd /var/www/22222/htdocs/files && unzip ex.zip && rm ex.zip
-#------------------------------------------------------------------------------------
-Install ee-dashboard
-#------------------------------------------------------------------------------------
-cd ~/
-git clone https://github.com/VirtuBox/easyengine-dashboard.git
-cp -rf easyengine-dashboard/* /var/www/22222/htdocs/
-chown -R www-data:www-data /var/www/22222/htdocs
-#------------------------------------------------------------------------------------
 # Skript Ende & Logfile Pfad Ausgabe
 #------------------------------------------------------------------------------------
 echo -e "${GREEN}EasyEngine Installation - Logfile: $LOGFILE ${NC}\n"
