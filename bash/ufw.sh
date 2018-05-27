@@ -4,7 +4,7 @@
 # ===================================================================================
 # Script: ufw.sh
 # Version: 1.0.0
-# Date: 2018-05-11
+# Date: 2018-05-27
 # Author: Daniel Bieli <danibieli.1185@gmail.com>
 # Description: UFW Firewall einrichten & Cloudflare IPs whitelisten.
 #------------------------------------------------------------------------------------
