@@ -87,7 +87,7 @@ logpath = /var/log/monit.log
 enabled = true
 mode = more
 port = 25,465,587
-logpath = %(postfix_log)s
+logpath = /var/log/mail.log
 
 
 [postfix-rbl]
