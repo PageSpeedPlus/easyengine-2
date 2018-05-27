@@ -72,6 +72,13 @@ logpath  = %(mysql_log)s
 backend  = %(mysql_backend)s
 
 
+[ee-wordpress]
+enabled = true
+filter = ee-wordpress
+action = iptables-multiport[name="ee-wordpress", port="80,443"]
+logpath = /var/log/nginx/*access.log
+
+
 [phpmyadmin-syslog]
 enabled = true
 port    = 80,443,22222
@@ -119,6 +126,7 @@ filter  = postfix[mode=rbl]
 port    = 25,465,587
 logpath = %(postfix_log)s
 backend = %(postfix_backend)s
+
 
 [postfix-sasl]
 enabled = false
