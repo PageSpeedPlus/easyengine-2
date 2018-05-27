@@ -1,5 +1,0 @@
-# default pid checks to use with 'check process'
-# to detect pid changes (e.g. after a daemon restart)
-
-if changed pid then alert
-if changed ppid then alert
