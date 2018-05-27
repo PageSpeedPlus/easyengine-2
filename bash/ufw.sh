@@ -56,4 +56,4 @@ systemctl restart ufw
 #------------------------------------------------------------------------------------
 # 7. Skript Ende & Logfile Pfad Ausgabe
 #------------------------------------------------------------------------------------
-echo -e "${GREEN}UFW Firewall einrichten & Cloudflare IPs whitelisten - Logfile: $LOGFILE ${NC}\n"
+echo -e "${GREEN}UFW Firewall einrichten und Cloudflare IPs whitelisten - Logfile: $LOGFILE ${NC}\n"
