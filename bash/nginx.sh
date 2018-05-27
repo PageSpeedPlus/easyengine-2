@@ -44,16 +44,24 @@ chmod 700 /home/tools/nginx-geoip-update.sh
 # /etc/nginx/nginx.conf
 wget -O /etc/nginx/nginx.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/nginx.conf
 wget -O /etc/nginx/mime.types https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/mime.types
-
-wget -O /etc/nginx/conf.d/webp.conf  https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/conf.d/webp.conf
-
-
-wget -O /etc/nginx/conf.d/upstream.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/conf.d/upstream.conf
+# /etc/nginx/sites-available/
+wget -O /etc/nginx/sites-available/default https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/sites-available/default-7
+wget -O /etc/nginx/sites-available/default-72 https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/sites-available/default-72
+wget -O /etc/nginx/sites-available/22222 https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/sites-available/22222-7
+wget -O /etc/nginx/sites-available/22222-72 https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/sites-available/22222-72
+# /etc/nginx/conf.d/
+wget -O /etc/nginx/conf.d/blockips.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/conf.d/blockips.conf
+wget -O /etc/nginx/conf.d/cloudflare.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/conf.d/cloudflare.conf
+wget -O /etc/nginx/conf.d/fastcgi.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/conf.d/fastcgi.conf
 wget -O /etc/nginx/conf.d/pagespeed.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/conf.d/pagespeed.conf
+wget -O /etc/nginx/conf.d/redis.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/conf.d/redis.conf
+wget -O /etc/nginx/conf.d/upstream.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/conf.d/upstream-7-72.conf
+wget -O /etc/nginx/conf.d/webp.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/conf.d/webp.conf
+# /etc/nginx/common/
+
 wget -O /etc/nginx/common/pagespeed-vhost.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/nginx/common/pagespeed-vhost.conf
 
-wget -O /etc/nginx/sites-available/default  https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/sites-available/default
-wget -O /etc/nginx/sites-available/22222 https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/nginx/sites-available/22222
+
 systemctl restart nginx
 #------------------------------------------------------------------------------------
 # 5. PHP 7.0
