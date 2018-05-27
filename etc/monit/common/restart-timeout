@@ -1,3 +1,0 @@
-# default timeout policy
-
-if 5 restarts within 5 cycles then timeout
