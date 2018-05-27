@@ -1,0 +1,6 @@
+# default /etc/init.d/ startup script checks
+
+if failed checksum then unmonitor
+if failed permission 0755 then unmonitor
+if failed uid root then unmonitor
+if failed gid root then unmonitor
