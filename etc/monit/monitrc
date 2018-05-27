@@ -1,6 +1,7 @@
 #Enable Web Access
 set httpd port 2812
      allow admin:easyengine
+     
 set daemon 60
 set logfile /var/log/monit.log
 # signature disable
