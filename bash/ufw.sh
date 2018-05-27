@@ -40,9 +40,12 @@ ufw default allow outgoing
 ufw default deny incoming
 ufw allow 22
 ufw allow 80
-ufw allow 123
+ufw allow 123 # NTP
+ufw allow 161 # SNMP
 ufw allow 443
-ufw allow 19999
+ufw allow 873 # Rsync
+ufw allow 6556 # SNMP
+ufw allow 19999 # Netdata
 ufw allow 22222
 ufw enable
 #------------------------------------------------------------------------------------
