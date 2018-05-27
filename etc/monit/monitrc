@@ -47,7 +47,6 @@ check system $HOST
 check filesystem rootfs with path /
      if space usage > 80% then alert
 
-
 # Cron
        
 check process crond with pidfile /var/run/crond.pid
@@ -62,11 +61,17 @@ check process crond with pidfile /var/run/crond.pid
      
 check file cron_bin with path /usr/sbin/cron
      group crond
-     include /etc/monit/templates/rootbin
+     if failed checksum       then unmonitor
+     if failed permission 755 then unmonitor
+     if failed uid root       then unmonitor
+     if failed gid root       then unmonitor
      
 check file cron_rc with path "/etc/init.d/cron"
-    group crond
-    include /etc/monit/templates/rootbin
+     group crond
+     if failed checksum       then unmonitor
+     if failed permission 755 then unmonitor
+     if failed uid root       then unmonitor
+     if failed gid root       then unmonitor
     
 check directory cron_spool with path /var/spool/cron/crontabs
     group crond
