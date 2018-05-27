@@ -45,6 +45,10 @@ echo never > /sys/kernel/mm/transparent_hugepage/enabled
 echo '-U 0' >> /etc/memcached.conf 
 systemctl restart memcached
 #------------------------------------------------------------------------------------
+# Ask for WordPress prefix while site creation
+#------------------------------------------------------------------------------------
+sed -i "s/prefix = False/prefix = true/" /etc/ee/ee.conf
+#------------------------------------------------------------------------------------
 # Skript Ende & Logfile Pfad Ausgabe
 #------------------------------------------------------------------------------------
 echo -e "${GREEN}EasyEngine Installation - Logfile: $LOGFILE ${NC}\n"
