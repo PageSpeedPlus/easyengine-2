@@ -12,7 +12,7 @@ set httpd port 2812 address 0.0.0.0  # allow connections on all adapters
      pemfile  /var/certs/monit.pem
      allow admin:easyengine
 
-# Mail
+# GMail
 # set mailserver smtp.gmail.com port 587
 # username "gmail_username" password "password" # this is the gmail account that will send the alert
 # using tlsv1 with timeout 30 seconds
@@ -25,6 +25,23 @@ set httpd port 2812 address 0.0.0.0  # allow connections on all adapters
 # Sincerely,
 # Your MonitRobot
 # }
+
+# Mailgun
+# set mail-format {
+#   from: monit@wp-bullet.com
+#   subject: monit alert --  $EVENT
+#   message: $EVENT Service $SERVICE
+#                 Date:        $DATE
+#                 Action:      $ACTION
+#                 Host:        $HOST
+#                 Description: $DESCRIPTION
+# 
+#            Your faithful employee,
+#            Monit }
+# set mailserver smtp.mailgun.org port 587
+#   username postmaster@mg.yourdomain.com password "your-smtp-password"
+#   using TLSV1 with timeout 30 seconds
+# set alert webmaster@wp-bullet.com #email address which will receive monit alerts
 
 include /etc/monit/conf.d/*.conf
 
