@@ -48,6 +48,7 @@ wget -O /etc/monit/conf.d/openssh-server.conf https://raw.githubusercontent.com/
 wget -O /etc/monit/conf.d/postfix.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/monit/conf.d/postfix-2.conf
 wget -O /home/tools/foldersizecheck.sh https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/home/tools/foldersizecheck.sh
 chmod +x /home/tools/foldersizecheck.sh
+wget -O /etc/monit/conf.d/wordpressfoldersize.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/monit/conf.d/wordpressfoldersize.conf
 
 openssl req -new -x509 -days 365 -nodes -out /var/certs/monit.pem -keyout /var/certs/monit.pem
 chmod 0700 /var/certs/monit.pem
