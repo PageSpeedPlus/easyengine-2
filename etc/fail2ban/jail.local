@@ -36,8 +36,8 @@ action_cf_mwl = cloudflare[cfuser="%(cfemail)s", cftoken="%(cfapikey)s"]
 action_blocklist_de  = blocklist_de[email="%(sender)s", service=%(filter)s, apikey="%(blocklist_de_apikey)s", agent="%(fail2ban_agent)s"]
 action_badips_report = badips[category="%(__name__)s", agent="%(fail2ban_agent)s"]
 action_abuseipdb = abuseipdb
-action = %(action_)s
-
+action = iptables-multiport
+         cloudflare
 
 [sshd]
 enabled = true
