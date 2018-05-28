@@ -47,6 +47,8 @@ wget -O /etc/monit/conf.d/memcached.conf https://raw.githubusercontent.com/PageS
 wget -O /etc/monit/conf.d/openssh-server.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/monit/conf.d/openssh-server.conf
 wget -O /etc/monit/conf.d/postfix.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/monit/conf.d/postfix-2.conf
 
+openssl req -new -x509 -days 365 -nodes -out /var/certs/monit.pem -keyout /var/certs/monit.pem
+chmod 0700 /var/certs/monit.pem
 #------------------------------------------------------------------------------------
 # 5. Monit starten
 #------------------------------------------------------------------------------------
