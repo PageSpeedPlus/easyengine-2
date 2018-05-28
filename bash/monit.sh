@@ -52,6 +52,7 @@ wget -O /etc/monit/conf.d/wordpressfoldersize.conf https://raw.githubusercontent
 
 openssl req -new -x509 -days 365 -nodes -out /var/certs/monit.pem -keyout /var/certs/monit.pem
 chmod 0700 /var/certs/monit.pem
+service monit reload
 #------------------------------------------------------------------------------------
 # 5. Monit starten
 #------------------------------------------------------------------------------------
