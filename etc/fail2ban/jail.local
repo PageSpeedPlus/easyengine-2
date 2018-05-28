@@ -38,6 +38,7 @@ action_badips_report = badips[category="%(__name__)s", agent="%(fail2ban_agent)s
 action_abuseipdb = abuseipdb
 action = iptables-multiport
          cloudflare
+         abuseipdb
 
 [sshd]
 enabled = true
