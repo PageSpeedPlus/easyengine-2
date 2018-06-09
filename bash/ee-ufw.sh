@@ -2,36 +2,33 @@
 # ===================================================================================
 # | UFW Firewall einrichten & Cloudflare IPs whitelisten
 # ===================================================================================
-# Script: ufw.sh
+# Script: ee-ufw.sh
 # Version: 1.0.0
 # Date: 2018-05-27
 # Author: Daniel Bieli <danibieli.1185@gmail.com>
 # Description: UFW Firewall einrichten & Cloudflare IPs whitelisten.
 #------------------------------------------------------------------------------------
-# 1. Induviduelle Variabeln
+# | Induviduelle Variabeln
 #------------------------------------------------------------------------------------
-LOGFILE=/var/log/ufw.sh.log
+LOGFILE=/var/log/ee-ufw.sh.log
 #------------------------------------------------------------------------------------
-# 2. Standart Variabeln
+# | Standart Variabeln
 #------------------------------------------------------------------------------------
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
-PWD=$(pwd);
-exec > >(tee -i $LOGFILE)
-exec 2>&1
 #------------------------------------------------------------------------------------
-# 3. Root Check
+# | Root Check
 #------------------------------------------------------------------------------------
 if [ "$(id -u)" != "0" ]; then
-    echo "Error: You must be root to run this script, please use the root user to install the software."
+    echo "${RED}Error: Sie müssen root sein, um dieses Skript auszuführen. ${NC}\n"
     exit 1
 fi
 clear
 #------------------------------------------------------------------------------------
-# 4. UFW Firewall installieren
+# UFW Firewall installieren
 #------------------------------------------------------------------------------------
-apt-get -qq update && apt-get -yqq install ufw > /dev/null 2>&1
+apt-get -qq update && apt-get -yqq install ufw
 #------------------------------------------------------------------------------------
 # 5. UFW Firewall konfigurieren & aktivieren
 #------------------------------------------------------------------------------------
@@ -45,7 +42,6 @@ ufw allow 161 # SNMP
 ufw allow 443
 ufw allow 873 # Rsync
 ufw allow 6556 # SNMP
-ufw allow 19999 # Netdata
 ufw allow 22222
 ufw enable
 #------------------------------------------------------------------------------------
