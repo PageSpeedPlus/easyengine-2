@@ -35,7 +35,7 @@ apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade && apt-get -y au
 #------------------------------------------------------------------------------------
 # 5. Benötigte Software installieren
 #------------------------------------------------------------------------------------
-apt-get -y install html2text manpages-de cron-apt unattended-upgrades curl wget ufw haveged git unzip zip fail2ban htop dnsutils zoo bzip2 arj nomarch lzop cabextract locate apt-listchanges apt-transport-https software-properties-common lsb-release ca-certificates ssh openssh-server nload nmonntp ntpdate debconf-utils binutils sudo e2fsprogs openssh-server openssl ssl-cert mcrypt nano rsync
+apt-get -y install language-pack-de html2text manpages-de cron-apt unattended-upgrades curl wget ufw haveged git unzip zip fail2ban htop dnsutils zoo bzip2 arj nomarch lzop cabextract locate apt-listchanges apt-transport-https software-properties-common lsb-release ca-certificates ssh openssh-server nload nmonntp ntpdate debconf-utils binutils sudo e2fsprogs openssh-server openssl ssl-cert mcrypt nano rsync
 #------------------------------------------------------------------------------------
 # 6. Standart Shell von Dash auf Bash Shell umstellen
 #------------------------------------------------------------------------------------
