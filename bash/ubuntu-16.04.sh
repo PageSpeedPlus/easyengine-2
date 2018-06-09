@@ -31,7 +31,7 @@ clear
 #------------------------------------------------------------------------------------
 # 4. Ubuntu aktualisieren & aufräumen
 #------------------------------------------------------------------------------------
-apt-get -qq update && apt-get -yqq upgrade && apt-get -yqq autoremove && apt-get -qq clean > /dev/null 2>&1
+apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade && apt-get -y autoremove && apt-get clean
 #------------------------------------------------------------------------------------
 # 5. Benötigte Software installieren
 #------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ apt-get -y install html2text manpages-de cron-apt unattended-upgrades curl wget 
 # 6. Standart Shell von Dash auf Bash Shell umstellen
 #------------------------------------------------------------------------------------
 echo "dash dash/sh boolean false" | debconf-set-selections
-dpkg-reconfigure -f noninteractive dash > /dev/null 2>&1
+dpkg-reconfigure -f noninteractive dash
 #------------------------------------------------------------------------------------
 # 7. Erlaubt SSH Logins via Passwort & Verbietet Root Login
 #------------------------------------------------------------------------------------
@@ -50,9 +50,9 @@ sed -i 's/PermitRootLogin yes/PermitRootLogin without-password/' /etc/ssh/sshd_c
 #------------------------------------------------------------------------------------
 # 8. Tweak Kernel source & Increase open files limits source
 #------------------------------------------------------------------------------------
-wget -O /etc/sysctl.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/sysctl.conf > /dev/null 2>&1
-sysctl -p > /dev/null 2>&1
-wget -O /etc/security/limits.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/security/limits.conf > /dev/null 2>&1
+wget -O /etc/sysctl.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/sysctl.conf
+sysctl -p
+wget -O /etc/security/limits.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/security/limits.conf
 #------------------------------------------------------------------------------------
 # 9. Configure Automatic security updates
 #------------------------------------------------------------------------------------
