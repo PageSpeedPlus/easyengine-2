@@ -1,43 +1,40 @@
 #!/bin/bash
 # ===================================================================================
-# | Ubuntu 16.04 - Grundinstallation & Konfiguration
+# | Ubuntu 18.04 - Grundinstallation & Konfiguration
 # ===================================================================================
-# Script: ubuntu-16.04.sh
-# Version: 1.0.0
-# Date: 2018-05-12
+# Script: ubuntu-18.04.sh
+# Version: 2.0.0
+# Date: 2018-06-09
 # Author: Daniel Bieli <danibieli.1185@gmail.com>
-# Description: Ubuntu 16.04 installieren und konfigurieren.
+# Description: Ubuntu 18.04 installieren und konfigurieren.
 #------------------------------------------------------------------------------------
-# 1. Induviduelle Variabeln
+# | Induviduelle Variabeln
 #------------------------------------------------------------------------------------
-LOGFILE=/var/log/ubuntu-16.04.sh.log
+LOGFILE=/var/log/ee-ubuntu.sh.log
 #------------------------------------------------------------------------------------
-# 2. Standart Variabeln
+# | Standart Variabeln
 #------------------------------------------------------------------------------------
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
-PWD=$(pwd);
-exec > >(tee -i $LOGFILE)
-exec 2>&1
 #------------------------------------------------------------------------------------
-# 3. Root Check
+# | Root Check
 #------------------------------------------------------------------------------------
 if [ "$(id -u)" != "0" ]; then
-    echo "Error: You must be root to run this script, please use the root user to install the software."
+    echo "${RED}Error: Sie müssen root sein, um dieses Skript auszuführen. ${NC}\n"
     exit 1
 fi
 clear
+# ===================================================================================
+# 1. Ubuntu aktualisieren & aufräumen
 #------------------------------------------------------------------------------------
-# 4. Ubuntu aktualisieren & aufräumen
+apt-get -qq update && apt-get -yqq upgrade && apt-get -yqq dist-upgrade && apt-get -yqq autoremove && apt-get -qq clean 2>> $LOGFILE
 #------------------------------------------------------------------------------------
-apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade && apt-get -y autoremove && apt-get clean
-#------------------------------------------------------------------------------------
-# 5. Benötigte Software installieren
+# Benötigte Pakete installieren
 #------------------------------------------------------------------------------------
 apt-get -y install language-pack-de language-pack-de-base html2text manpages-de cron-apt unattended-upgrades curl wget ufw haveged git unzip zip fail2ban htop dnsutils zoo bzip2 arj nomarch lzop cabextract locate apt-listchanges apt-transport-https software-properties-common lsb-release ca-certificates ssh openssh-server nload nmonntp ntpdate debconf-utils binutils sudo e2fsprogs openssh-server openssl ssl-cert mcrypt nano rsync
 #------------------------------------------------------------------------------------
-# 6. Standart Shell von Dash auf Bash Shell umstellen
+# Standart Shell von Dash auf Bash Shell umstellen
 #------------------------------------------------------------------------------------
 echo "dash dash/sh boolean false" | debconf-set-selections
 dpkg-reconfigure -f noninteractive dash
