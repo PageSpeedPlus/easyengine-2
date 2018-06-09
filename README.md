@@ -1,10 +1,12 @@
 # [EasyEngine](https://easyengine.io/)
 
+- [Ubuntu 18.04](https://pagespeedplus.github.io/easyengine/ubuntu/)
+
 ## Quick Start
 
 ### Distro
 
-- Ubuntu 16.04
+- Ubuntu 18.04
 
 ### Voraussetzung
 
