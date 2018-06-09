@@ -1,12 +1,14 @@
 # Ubuntu 18.04 optimierte für EasyEngine
 
+Inhaltsverzeichnis:
+
+## Initial Konfiguration
+
 **[Auto Skript](https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/bash/ubuntu-16.04.sh)**
 
 ```bash
 bash <(wget --no-check-certificate -O - https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/bash/ubuntu-16.04.sh)
 ```
-
-## Initial Konfiguration
 
 ### Voraussetzung
 
@@ -86,7 +88,20 @@ git clone https://github.com/scopatz/nanorc.git /usr/share/nano-syntax-highlight
 echo "include /usr/share/nano-syntax-highlighting/*.nanorc" >> /etc/nanorc
 ```
 
+
 ----
+
+
+----
+
+
+----
+
+
+
+
+
+
 
 
 ## Security 
