@@ -50,9 +50,10 @@ sed -i 's/PermitRootLogin yes/PermitRootLogin without-password/' /etc/ssh/sshd_c
 #------------------------------------------------------------------------------------
 # 8. Tweak Kernel source & Increase open files limits source
 #------------------------------------------------------------------------------------
-wget -O /etc/sysctl.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/sysctl.conf
+modprobe tcp_htcp
+wget -O /etc/sysctl.conf https://virtubox.github.io/ubuntu-nginx-web-server/files/etc/sysctl.conf #https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/sysctl.conf
 sysctl -p
-wget -O /etc/security/limits.conf https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/security/limits.conf
+wget -O /etc/security/limits.conf https://virtubox.github.io/ubuntu-nginx-web-server/files/etc/security/limits.conf #https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/security/limits.conf
 #------------------------------------------------------------------------------------
 # 9. Configure Automatic security updates
 #------------------------------------------------------------------------------------
