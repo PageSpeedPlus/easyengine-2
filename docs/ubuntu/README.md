@@ -1,5 +1,11 @@
 # Ubuntu 18.04 optimierte für EasyEngine
 
+**[Auto Skript](https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/bash/ubuntu-16.04.sh)**
+
+```bash
+bash <(wget --no-check-certificate -O - https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/bash/ubuntu-16.04.sh)
+```
+
 ## Initial Konfiguration
 
 ### Voraussetzung
@@ -49,19 +55,39 @@ apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade && apt-get -y au
 apt-get -y install html2text manpages-de cron-apt unattended-upgrades curl wget ufw haveged git unzip zip fail2ban htop dnsutils zoo bzip2 arj nomarch lzop cabextract locate apt-listchanges apt-transport-https software-properties-common lsb-release ca-certificates ssh openssh-server nload nmonntp ntpdate debconf-utils binutils sudo e2fsprogs openssh-server openssl ssl-cert mcrypt nano rsync
 ```
 
+### Kernel optimieren & Dateilimits erhöhen
 
+**Kernel optimieren** [source](https://github.com/VirtuBox/ubuntu-nginx-web-server/blob/master/etc/sysctl.conf) &
+**Dateilimits erhöhen**  [source](https://github.com/VirtuBox/ubuntu-nginx-web-server/blob/master/etc/security/limits.conf)
 
-**Tweak Kernel** [source](https://github.com/VirtuBox/ubuntu-nginx-web-server/blob/master/etc/sysctl.conf) &
-**Increase open files limits**  [source](https://github.com/VirtuBox/ubuntu-nginx-web-server/blob/master/etc/security/limits.conf)
-```
-wget -O /etc/sysctl.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/sysctl.conf
+```bash
+modprobe tcp_htcp
+wget -O /etc/sysctl.conf https://virtubox.github.io/ubuntu-nginx-web-server/files/etc/sysctl.conf #https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/sysctl.conf
 sysctl -p
-wget -O /etc/security/limits.conf https://raw.githubusercontent.com/VirtuBox/ubuntu-nginx-web-server/master/etc/security/limits.conf
+wget -O /etc/security/limits.conf https://virtubox.github.io/ubuntu-nginx-web-server/files/etc/security/limits.conf #https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/security/limits.conf
 ```
-**disable transparent hugepage for redis**
-```
+
+### Deaktiviere transparente Hugepage für Redis Cache
+
+```bash
 echo never > /sys/kernel/mm/transparent_hugepage/enabled
 ```
+
+### Konfigure automatische Sicherheits Updates
+
+```bash
+dpkg-reconfigure unattended-upgrades
+```
+
+## Syntax Highlighten im nano Editor
+
+```bash
+git clone https://github.com/scopatz/nanorc.git /usr/share/nano-syntax-highlighting/
+echo "include /usr/share/nano-syntax-highlighting/*.nanorc" >> /etc/nanorc
+```
+
+----
+
 
 ## Security 
 ----
