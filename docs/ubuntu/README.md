@@ -1,5 +1,10 @@
+# Ubuntu 18.04 optimierte für EasyEngine
 
-# Ubuntu optimized configuration with EasyEngine
+### Voraussetzung
+
+- Ubuntu 18.04
+- Non-root User
+- Hostname
 
 ## Initial configuration
 
