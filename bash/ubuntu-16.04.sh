@@ -63,6 +63,11 @@ echo never > /sys/kernel/mm/transparent_hugepage/enabled
 #------------------------------------------------------------------------------------
 dpkg-reconfigure unattended-upgrades
 #------------------------------------------------------------------------------------
-# 11. Skript Ende & Logfile Pfad Ausgabe
+# 11. Syntax Highlighten im nano Editor
+#------------------------------------------------------------------------------------
+git clone https://github.com/scopatz/nanorc.git /usr/share/nano-syntax-highlighting/
+echo "include /usr/share/nano-syntax-highlighting/*.nanorc" >> /etc/nanorc
+#------------------------------------------------------------------------------------
+# 12. Skript Ende & Logfile Pfad Ausgabe
 #------------------------------------------------------------------------------------
 echo -e "${GREEN}Ubuntu 16.04 Grundkonfiguration abgeschlossen - Logfile: $LOGFILE ${NC}\n"
