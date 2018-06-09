@@ -55,10 +55,14 @@ wget -O /etc/sysctl.conf https://virtubox.github.io/ubuntu-nginx-web-server/file
 sysctl -p
 wget -O /etc/security/limits.conf https://virtubox.github.io/ubuntu-nginx-web-server/files/etc/security/limits.conf #https://raw.githubusercontent.com/PageSpeedPlus/easyengine/master/etc/security/limits.conf
 #------------------------------------------------------------------------------------
-# 9. Configure Automatic security updates
+# 9. Deaktiviere transparente Hugepage für Redis Cache
+#------------------------------------------------------------------------------------
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+#------------------------------------------------------------------------------------
+# 10. Konfigure automatische Sicherheits Updates
 #------------------------------------------------------------------------------------
 dpkg-reconfigure unattended-upgrades
 #------------------------------------------------------------------------------------
-# 10. Skript Ende & Logfile Pfad Ausgabe
+# 11. Skript Ende & Logfile Pfad Ausgabe
 #------------------------------------------------------------------------------------
 echo -e "${GREEN}Ubuntu 16.04 Grundkonfiguration abgeschlossen - Logfile: $LOGFILE ${NC}\n"
