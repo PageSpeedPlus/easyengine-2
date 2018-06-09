@@ -16,6 +16,8 @@
 
 ##### /etc/hosts
 
+Ersetze `wpnginx` und `wpnginx.cf` durch deinen Hostnamen und deine Domain
+
 ```bash
 nano /etc/hosts
 ```
@@ -31,8 +33,8 @@ nano /etc/hosts
 ##### /etc/hostname 
 
 ```bash
-echo server1 > /etc/hostname 
-hostname server1
+echo wpnginx > /etc/hostname
+hostname wpnginx
 ```
 
 ### System Update & Pakete aufräumen
