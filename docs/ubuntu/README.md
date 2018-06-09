@@ -1,24 +1,54 @@
 # Ubuntu 18.04 optimierte für EasyEngine
 
+## Initial Konfiguration
+
 ### Voraussetzung
 
-- Ubuntu 18.04
-- Non-root User
-- Hostname
+- [Ubuntu 18.04](#Ubuntu-18.04)
+- [Non-root User](#Non-root-User)
+- [Hostname](#hostname)
 
-## Initial configuration
+#### Ubuntu 18.04
 
-**System update and packages cleanup**
+#### Non-root User
+
+#### Hostname
+
+##### /etc/hosts
+
+```bash
+nano /etc/hosts
+```
+
+```bash
+127.0.1.1 wpnginx.cf wpnginx
+127.0.0.1 localhost.localdomain localhost
+10.135.56.163 wpnginx.cf wpnginx
+46.101.214.5 wpnginx.cf wpnginx
+2a03:b0c0:3:d0::a17:f001 wpnginx.cf wpnginx
+```
+
+##### /etc/hostname 
+
+```bash
+echo server1 > /etc/hostname 
+hostname server1
+```
+
+### System Update & Pakete aufräumen
 
 ```bash
 apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade && apt-get -y autoremove && apt-get clean
 ```
 
-**Install useful packages**  
+### Notwendige Pakete installieren
+
+```bash
+apt-get -y install html2text manpages-de cron-apt unattended-upgrades curl wget ufw haveged git unzip zip fail2ban htop dnsutils zoo bzip2 arj nomarch lzop cabextract locate apt-listchanges apt-transport-https software-properties-common lsb-release ca-certificates ssh openssh-server nload nmonntp ntpdate debconf-utils binutils sudo e2fsprogs openssh-server openssl ssl-cert mcrypt nano rsync
 ```
-apt-get -y install haveged curl git unzip zip fail2ban htop
-```
-  
+
+
+
 **Tweak Kernel** [source](https://github.com/VirtuBox/ubuntu-nginx-web-server/blob/master/etc/sysctl.conf) &
 **Increase open files limits**  [source](https://github.com/VirtuBox/ubuntu-nginx-web-server/blob/master/etc/security/limits.conf)
 ```
