@@ -60,7 +60,7 @@ wp post delete 1 --force
 wp comment delete 1 --force
 wp widget delete $(wp widget list sidebar-1 --format=ids);
 
-wp plugin install --activate code-snippets worker ninjafirewall optimus query-monitor search-by-algolia-instant-relevant-results responsify-wp snitch autodescription updraftplus vevida-optimizer
+wp plugin install --activate code-snippets worker optimus query-monitor search-by-algolia-instant-relevant-results responsify-wp snitch autodescription updraftplus vevida-optimizer ninjafirewall
 # wp plugin install disqus-conditional-load elasticpress favicon-by-realfavicongenerator lazy-load-for-comments p3-profiler pods searchwp-api secsign table-of-contents-plus tablepress the-events-calendar wp-ultimate-csv-importer wp-external-links wp-sweep
 
 
