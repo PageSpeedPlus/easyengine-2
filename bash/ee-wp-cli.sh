@@ -75,6 +75,14 @@ wp plugin install code-snippets optimus query-monitor search-by-algolia-instant-
 
 
 
+# Induviduell
+
+# EDITOR=nano wp config edit
+
+
+
+# Als root user
+
 # PHP Cron Job durch Linux Systen Cron ersetzen
 echo "*/15 * * * * curl https://wpnginx.tk/wp-cron.php?doing_wp_cron > /dev/null 2>&1"
 # crontab -e
@@ -85,6 +93,7 @@ echo "*/15 * * * * curl https://wpnginx.tk/wp-cron.php?doing_wp_cron > /dev/null
 # find /var/www/ -type f -exec chmod 644 {} \;
 # cd /var/www/wpnginx.tk
 # chmod 400 wp-config.php
+
 
 
 #wp core config --extra-php <<PHP define( 'WP_POST_REVISIONS', false ); PHP
