@@ -22,9 +22,7 @@ wp option update home 'https://$domain'
 wp option update siteurl 'https://$domain'
 
 # Link Struktur setzten
-wp rewrite structure '/%post_id%/postname' 
-wp rewrite structure --category_base '/kat/' --tag-base '/tag/'
-wp rewrite structure --tag-base '/tag/'
+wp rewrite structure '/%post_id%/postname' --category-base='/kat/' --tag-base='/tag/'
 wp rewrite flush
 
 
