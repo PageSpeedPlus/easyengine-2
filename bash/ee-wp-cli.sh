@@ -53,6 +53,11 @@ wp option set default_comment_status closed;
 # Ping per Standart deaktiviert
 wp option set default_ping_status closed;
 
+# wp post create --post_type=page --post_status=publish --post_title='Home'
+# wp option update page_on_front 5
+# wp option update page_for_posts 10
+# wp option update show_on_front page
+
 # Standart Müll entfernen
 wp plugin uninstall akismet hello
 wp theme uninstall twentyfifteen twentysixteen
