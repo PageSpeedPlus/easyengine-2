@@ -17,6 +17,16 @@ wp theme update --all
 wp plugin uninstall akismet hello-dolly
 wp theme uninstall twentyfifteen twentysixteen
 
+# HTTPS für alle Links
+wp option update home 'https://$domain'
+wp option update siteurl 'https://$domain'
+
+# Link Struktur setzten
+wp rewrite structure '/%post_id%/postname' 
+wp rewrite structure --category_base '/kat/' --tag-base '/tag/'
+wp rewrite structure --tag-base '/tag/'
+wp rewrite flush
+
 
 wp core config --extra-php <<PHP define( 'WP_POST_REVISIONS', false ); PHP
 wp core config --extra-php <<PHP define( 'EMPTY_TRASH_DAYS', 2 ); PHP
@@ -53,5 +63,4 @@ wp core config --extra-php <<PHP define( 'WP_DEBUG_DISPLAY', true ); PHP
 
 
 
-wp rewrite structure --category_base '/kat/' --tag-base '/tag/' '/%post_id%/postname'
 
