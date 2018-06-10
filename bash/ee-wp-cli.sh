@@ -42,6 +42,10 @@ wp option update blogdescription "Professional Performance"
 # wp option update admin_email someone@example.com
 # wp option update default_role author
 
+# PHP Cron Job durch Linux Systen Cron ersetzen
+crontab -e
+*/15 * * * * curl https://wpnginx.tk/wp-cron.php?doing_wp_cron > /dev/null 2>&1
+
 # Kommentare per Standart deaktiviert
 wp option set default_comment_status closed;
 
