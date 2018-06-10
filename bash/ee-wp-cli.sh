@@ -45,6 +45,10 @@ wp plugin uninstall akismet hello-dolly
 wp theme uninstall twentyfifteen twentysixteen
 wp comment delete 1 --force
 
+# Kommentare und Pingbacks deaktivieren
+wp post list --format=ids | xargs wp post update --comment_status=closed
+wp post list --format=ids | xargs wp post update --ping_status=closed
+
 # Dateiberechtigungen setzten
 chown -R www-data:www-data /var/www
 find /var/www/ -type d -exec chmod 755 {} \;
