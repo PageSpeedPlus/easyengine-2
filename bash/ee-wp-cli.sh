@@ -25,8 +25,20 @@ wp option update siteurl 'https://$domain'
 wp rewrite structure '/%post_id%/postname' --category-base='/kat/' --tag-base='/tag/'
 wp rewrite flush
 
+# Jahr / Monat Ordner Struktur deaktivieren
+wp option update uploads_use_yearmonth_folders 0
+
+wp option update date_format 'Y-m-d'
+wp option update time_format 'H:i'
+wp option update start_of_week 0
+
+wp option update timezone_string 'Germany/Berlin'
+
+# Sprache ändern
+wp language core install --activate de_DE
+
 # Zeitzone anpassen
-wp option update timezone_string "Switzerland/Zurich"
+wp option update timezone_string "Germany/Berlin"
 
 # Blog Name und Beschreibung mit vorübergehendem Inhalt füllen
 wp option update blogname "PageSpeed+"
