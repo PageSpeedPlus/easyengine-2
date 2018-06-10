@@ -44,9 +44,12 @@ wp option update blogdescription "Professional Performance"
 
 
 # Standart Müll entfernen
-wp plugin uninstall akismet hello-dolly
+wp plugin uninstall akismet hello
 wp theme uninstall twentyfifteen twentysixteen
+wp post delete $(wp post list --post_type='page' --format=ids)
+wp post delete 1 --force
 wp comment delete 1 --force
+wp post delete $(wp post list --post_status=trash --format=ids)
 
 # Kommentare und Pingbacks deaktivieren
 wp post list --format=ids | xargs wp post update --comment_status=closed
