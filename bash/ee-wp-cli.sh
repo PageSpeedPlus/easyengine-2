@@ -43,7 +43,14 @@ wp option update blogdescription "Professional Performance"
 # Standart Müll entfernen
 wp plugin uninstall akismet hello-dolly
 wp theme uninstall twentyfifteen twentysixteen
+wp comment delete 1 --force
 
+# Dateiberechtigungen setzten
+chown -R www-data:www-data /var/www
+find /var/www/ -type d -exec chmod 755 {} \;
+find /var/www/ -type f -exec chmod 644 {} \;
+cd /var/www/$domain
+chmod 400 wp-config.php
 
 wp core config --extra-php <<PHP define( 'WP_POST_REVISIONS', false ); PHP
 wp core config --extra-php <<PHP define( 'EMPTY_TRASH_DAYS', 2 ); PHP
