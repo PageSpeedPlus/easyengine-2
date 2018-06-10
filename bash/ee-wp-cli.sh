@@ -10,7 +10,6 @@ cd htdocs
 # WordPress komplett updaten
 wp cli update
 wp core update
-wp db update
 wp plugin update --all
 wp theme update --all
 
