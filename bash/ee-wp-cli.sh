@@ -7,8 +7,11 @@
 cd /var/www/$domain
 cd htdocs
 
+# Suchmaschinen die Indexierung verbieten.
+wp option update blog_public 0
+
 # WordPress komplett updaten
-wp cli update
+wp cli update --nightly
 wp core update
 wp plugin update --all
 wp theme update --all
