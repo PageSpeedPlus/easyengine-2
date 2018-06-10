@@ -25,6 +25,17 @@ wp option update siteurl 'https://$domain'
 wp rewrite structure '/%post_id%/postname' --category-base='/kat/' --tag-base='/tag/'
 wp rewrite flush
 
+# Zeitzone anpassen
+wp option update timezone_string "Switzerland/Zurich"
+
+# Blog Name und Beschreibung mit vorübergehendem Inhalt füllen
+wp option update blogname "PageSpeed+"
+wp option update blogdescription "Professional Performance"
+
+
+
+# wp option update admin_email someone@example.com
+# wp option update default_role author
 
 wp core config --extra-php <<PHP define( 'WP_POST_REVISIONS', false ); PHP
 wp core config --extra-php <<PHP define( 'EMPTY_TRASH_DAYS', 2 ); PHP
