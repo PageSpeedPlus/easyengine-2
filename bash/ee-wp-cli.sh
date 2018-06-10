@@ -3,13 +3,13 @@
 # | WordPress Auto Konfiguration
 # ===================================================================================
 
-echo ""
-echo "Domain eingeben!"
-echo ""
-read -r domain
+# echo ""
+# echo "Domain eingeben!"
+# echo ""
+# read -r domain
 
 # Ins WordPress Verzeichnis wechseln
-cd /var/www/$domain
+cd /var/www/wpnginx.tk
 cd htdocs
 
 # Suchmaschinen die Indexierung verbieten.
@@ -31,11 +31,11 @@ wp option update start_of_week 1
 wp option update timezone_string 'Europe/Zurich'
 
 # HTTPS für alle Links
-wp option update home 'https://$domain'
-wp option update siteurl 'https://$domain'
+wp option update home 'https://wpnginx.tk'
+wp option update siteurl 'https://wpnginx.tk'
 
 # Link Struktur setzten
-wp rewrite structure '/%post_id%/postname' --category-base='/kat/' --tag-base='/tag/'
+wp rewrite structure '/%post_id%/%postname%' --category-base='/kat/' --tag-base='/tag/'
 wp rewrite flush
 
 # Jahr / Monat Ordner Struktur deaktivieren
@@ -61,25 +61,25 @@ wp post delete 1 --force
 wp comment delete 1 --force
 wp widget delete $(wp widget list sidebar-1 --format=ids);
 
-wp plugin install --activate code-snippets worker optimus query-monitor search-by-algolia-instant-relevant-results responsify-wp snitch autodescription updraftplus vevida-optimizer ninjafirewall
-# wp plugin install disqus-conditional-load elasticpress favicon-by-realfavicongenerator lazy-load-for-comments p3-profiler pods searchwp-api secsign table-of-contents-plus tablepress the-events-calendar wp-ultimate-csv-importer wp-external-links wp-sweep
+wp plugin install code-snippets optimus query-monitor search-by-algolia-instant-relevant-results responsify-wp snitch autodescription updraftplus vevida-optimizer ninjafirewall
+# wp plugin install disqus-conditional-load elasticpress favicon-by-realfavicongenerator worker lazy-load-for-comments p3-profiler pods searchwp-api secsign table-of-contents-plus tablepress the-events-calendar wp-ultimate-csv-importer wp-external-links wp-sweep
 
 # Kommentare und Pingbacks deaktivieren
 # wp post list --format=ids | xargs wp post update --comment_status=closed
 # wp post list --format=ids | xargs wp post update --ping_status=closed
 
-# Dateiberechtigungen setzten
-chown -R www-data:www-data /var/www
-find /var/www/ -type d -exec chmod 755 {} \;
-find /var/www/ -type f -exec chmod 644 {} \;
-cd /var/www/$domain
-chmod 400 wp-config.php
+
 
 # PHP Cron Job durch Linux Systen Cron ersetzen
 echo "*/15 * * * * curl https://wpnginx.tk/wp-cron.php?doing_wp_cron > /dev/null 2>&1"
-crontab -e
+# crontab -e
 
-
+# Dateiberechtigungen setzten
+# chown -R www-data:www-data /var/www
+# find /var/www/ -type d -exec chmod 755 {} \;
+# find /var/www/ -type f -exec chmod 644 {} \;
+# cd /var/www/wpnginx.tk
+# chmod 400 wp-config.php
 
 
 #wp core config --extra-php <<PHP define( 'WP_POST_REVISIONS', false ); PHP
