@@ -77,15 +77,44 @@ wp plugin install code-snippets optimus query-monitor search-by-algolia-instant-
 
 # Induviduell
 
-# EDITOR=nano wp config edit
+EDITOR=nano wp config edit
+
+define( 'DISABLE_WP_CRON', true );
+
+define( 'EMPTY_TRASH_DAYS', 2 );
+
+define( 'UPLOADS', 'https://$domain/static/img' );
+
+define( 'FS_CHMOD_DIR', ( 0755 & ~ umask() ) );
+define( 'FS_CHMOD_FILE', ( 0644 & ~ umask() ) );
+
+define( 'WP_MEMORY_LIMIT', '256M' );
+define( 'WP_MAX_MEMORY_LIMIT', '512M' );
+
+define( 'WP_HTTP_BLOCK_EXTERNAL', true );
+define( 'WP_ACCESSIBLE_HOSTS', 'api.wordpress.org,*.github.com,updates.nintechnet.com' );
+
+# Perfmatters Plugin bietet diese Feature im Backend
+
+define( 'AUTOSAVE_INTERVAL', 90 );  
+define( 'WP_POST_REVISIONS', false );
+
+# Cache Enabler benütigt Zugriff auf den WP Cache um die generierten Statischten Seiten abzulegen und zu verwalten
+
+define( 'WP_CACHE', true );
+
+# WP Corn nicht vergessen in Linux Cron zu migrieren "crontab -e"
+
+define( 'DISABLE_WP_CRON', true );
+
 
 
 
 # Als root user
 
 # PHP Cron Job durch Linux Systen Cron ersetzen
+crontab -e
 echo "*/15 * * * * curl https://wpnginx.tk/wp-cron.php?doing_wp_cron > /dev/null 2>&1"
-# crontab -e
 
 # Dateiberechtigungen setzten
 # chown -R www-data:www-data /var/www
@@ -96,28 +125,10 @@ echo "*/15 * * * * curl https://wpnginx.tk/wp-cron.php?doing_wp_cron > /dev/null
 
 
 
-#wp core config --extra-php <<PHP define( 'WP_POST_REVISIONS', false ); PHP
-#wp core config --extra-php <<PHP define( 'EMPTY_TRASH_DAYS', 2 ); PHP
-#wp core config --extra-php <<PHP define( 'AUTOSAVE_INTERVAL', 90 ); PHP
-#wp core config --extra-php <<PHP define( 'DISABLE_WP_CRON', true ); PHP
-#wp core config --extra-php <<PHP define( 'WPLANG', 'de_DE' ); PHP
 
-#wp core config --extra-php <<PHP define( 'UPLOADS', 'https://$domain/assets/img' ); PHP
 
-#wp core config --extra-php <<PHP define( 'FS_CHMOD_DIR', ( 0755 & ~ umask() ) ); PHP
-#wp core config --extra-php <<PHP define( 'FS_CHMOD_FILE', ( 0644 & ~ umask() ) ); PHP
 
-#wp core config --extra-php <<PHP define( 'WP_MEMORY_LIMIT', '256M' ); PHP
-#wp core config --extra-php <<PHP define( 'WP_MAX_MEMORY_LIMIT', '512M' ); PHP
 
-#wp core config --extra-php <<PHP $table_prefix = 'wp1_'; PHP
-
-#wp core config --extra-php <<PHP define( 'IMAGE_EDIT_OVERWRITE', true ); PHP
-
-#wp core config --extra-php <<PHP define( 'WP_CACHE', true ); PHP
-
-#wp core config --extra-php <<PHP define( 'WP_HTTP_BLOCK_EXTERNAL', true ); PHP
-#wp core config --extra-php <<PHP define( 'WP_ACCESSIBLE_HOSTS', 'api.wordpress.org,*.github.com' ); PHP
 
 #wp core config --extra-php <<PHP define( 'WP_DEBUG', true ); PHP
 #wp core config --extra-php <<PHP define( 'SCRIPT_DEBUG', true ); PHP
