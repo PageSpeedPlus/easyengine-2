@@ -2,6 +2,9 @@
 # ===================================================================================
 # | WordPress Auto Konfiguration
 # ===================================================================================
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
 
 # Suchmaschinen die Indexierung verbieten.
 wp option update blog_public 0
@@ -48,9 +51,25 @@ wp post delete 1 --force
 wp comment delete 1 --force
 wp widget delete $(wp widget list sidebar-1 --format=ids);
 
-wp plugin install code-snippets optimus query-monitor snitch autodescription updraftplus vevida-optimizer ninjafirewall
-# wp plugin install disqus-conditional-load elasticpress search-by-algolia-instant-relevant-results responsify-wp favicon-by-realfavicongenerator worker lazy-load-for-comments p3-profiler pods searchwp-api secsign table-of-contents-plus tablepress the-events-calendar wp-ultimate-csv-importer wp-external-links wp-sweep
+# Home & Blog Seite erstellen und zuweisen
+wp post create --post_type=page --post_status=publish --post_title='Home'
+wp post create --post_type=page --post_status=publish --post_title='Blog'
+wp post list --post_type=page
 
-# Kommentare und Pingbacks deaktivieren
-# wp post list --format=ids | xargs wp post update --comment_status=closed
-# wp post list --format=ids | xargs wp post update --ping_status=closed
+echo ""
+echo "Setze die ID von Home oder Blog welche du oben siehst anstatt der letzten Zahl in den Beispielen unten. Das 3. Beispiel genau so übernehmen."
+echo ""
+echo -e "${RED}wp option update page_on_front 5 ${NC}\n"
+echo -e "${RED}wp option update page_for_posts 10 ${NC}\n"
+echo -e "${GREEN}wp option update show_on_front page ${NC}\n"
+echo ""
+echo "Blog Domain mit https:// speichern"
+echo ""
+echo -e "${RED}wp option update home 'https://' ${NC}\n"
+echo -e "${RED}wp option update siteurl 'https://' 10 ${NC}\n"
+echo ""
+echo "Die wp-config.php nun perfektionieren"
+echo ""
+echo -e "${GREEN}EDITOR=nano wp config edit ${NC}\n"
+echo ""
+
