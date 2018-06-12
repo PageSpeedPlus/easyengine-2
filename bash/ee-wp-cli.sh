@@ -53,11 +53,6 @@ wp option set default_comment_status closed;
 # Ping per Standart deaktiviert
 wp option set default_ping_status closed;
 
-# wp post create --post_type=page --post_status=publish --post_title='Home'
-# wp option update page_on_front 5
-# wp option update page_for_posts 10
-# wp option update show_on_front page
-
 # Standart Müll entfernen
 wp plugin uninstall akismet hello
 wp theme uninstall twentyfifteen twentysixteen
@@ -77,7 +72,15 @@ wp plugin install code-snippets optimus query-monitor search-by-algolia-instant-
 
 # Induviduell
 
-EDITOR=nano wp config edit
+wp post create --post_type=page --post_status=publish --post_title='Home'
+wp post create --post_type=page --post_status=publish --post_title='Blog'
+
+# wp option update page_on_front 5
+# wp option update page_for_posts 10
+# wp option update show_on_front page
+
+
+## EDITOR=nano wp config edit
 
 define( 'DISABLE_WP_CRON', true );
 
@@ -114,26 +117,16 @@ define( 'DISABLE_WP_CRON', true );
 
 # PHP Cron Job durch Linux Systen Cron ersetzen
 crontab -e
+
 echo "*/15 * * * * curl https://wpnginx.tk/wp-cron.php?doing_wp_cron > /dev/null 2>&1"
 
 # Dateiberechtigungen setzten
-# chown -R www-data:www-data /var/www
-# find /var/www/ -type d -exec chmod 755 {} \;
-# find /var/www/ -type f -exec chmod 644 {} \;
-# cd /var/www/wpnginx.tk
-# chmod 400 wp-config.php
+chown -R www-data:www-data /var/www
+find /var/www/ -type d -exec chmod 755 {} \;
+find /var/www/ -type f -exec chmod 644 {} \;
+cd /var/www/wpnginx.tk
+chmod 400 wp-config.php
 
-
-
-
-
-
-
-
-#wp core config --extra-php <<PHP define( 'WP_DEBUG', true ); PHP
-#wp core config --extra-php <<PHP define( 'SCRIPT_DEBUG', true ); PHP
-#wp core config --extra-php <<PHP define( 'WP_DEBUG_LOG', false ); PHP
-#wp core config --extra-php <<PHP define( 'WP_DEBUG_DISPLAY', true ); PHP
 
 
 
