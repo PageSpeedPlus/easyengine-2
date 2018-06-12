@@ -30,10 +30,6 @@ wp option update time_format 'H:i'
 wp option update start_of_week 1
 wp option update timezone_string 'Europe/Zurich'
 
-# HTTPS für alle Links
-wp option update home 'https://wpnginx.tk'
-wp option update siteurl 'https://wpnginx.tk'
-
 # Link Struktur setzten
 wp rewrite structure '/%post_id%/%postname%' --category-base='/kat/' --tag-base='/tag/'
 wp rewrite flush
@@ -41,17 +37,17 @@ wp rewrite flush
 # Jahr / Monat Ordner Struktur deaktivieren
 wp option update uploads_use_yearmonth_folders 0
 
-# Blog Name und Beschreibung mit vorübergehendem Inhalt füllen
-wp option update blogname "PageSpeed+"
-wp option update blogdescription "Professional Performance"
-# wp option update admin_email someone@example.com
-# wp option update default_role author
-
 # Kommentare per Standart deaktiviert
 wp option set default_comment_status closed;
 
 # Ping per Standart deaktiviert
 wp option set default_ping_status closed;
+
+# Blog Name und Beschreibung mit vorübergehendem Inhalt füllen
+wp option update blogname "PageSpeed+"
+wp option update blogdescription "Professional Performance"
+# wp option update admin_email someone@example.com
+# wp option update default_role author
 
 # Standart Müll entfernen
 wp plugin uninstall akismet hello
@@ -72,9 +68,13 @@ wp plugin install code-snippets optimus query-monitor search-by-algolia-instant-
 
 # Induviduell
 
+# HTTPS für alle Links
+wp option update home 'https://wpnginx.tk'
+wp option update siteurl 'https://wpnginx.tk'
+
+# Home & Blog Seite erstellen und zuweisen
 wp post create --post_type=page --post_status=publish --post_title='Home'
 wp post create --post_type=page --post_status=publish --post_title='Blog'
-
 # wp option update page_on_front 5
 # wp option update page_for_posts 10
 # wp option update show_on_front page
